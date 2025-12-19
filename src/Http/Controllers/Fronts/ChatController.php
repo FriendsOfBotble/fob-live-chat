@@ -1,0 +1,130 @@
+<?php
+
+namespace FriendsOfBotble\LiveChat\Http\Controllers\Fronts;
+
+use Botble\Base\Http\Controllers\BaseController;
+use Botble\Base\Supports\Helper;
+use FriendsOfBotble\LiveChat\Enums\ConversationStatus;
+use FriendsOfBotble\LiveChat\Http\Requests\Fronts\SendMessageRequest;
+use FriendsOfBotble\LiveChat\Http\Requests\Fronts\StartChatRequest;
+use FriendsOfBotble\LiveChat\Models\Conversation;
+use FriendsOfBotble\LiveChat\Models\Message;
+use FriendsOfBotble\LiveChat\Support\LiveChatHelper;
+use Illuminate\Http\Request;
+
+class ChatController extends BaseController
+{
+    public function start(StartChatRequest $request)
+    {
+        $sessionId = session()->getId();
+
+        $conversation = Conversation::query()
+            ->where('session_id', $sessionId)
+            ->where('status', ConversationStatus::OPEN)
+            ->first();
+
+        if (! $conversation) {
+            $conversation = Conversation::query()->create([
+                'session_id' => $sessionId,
+                'visitor_name' => $request->input('name'),
+                'visitor_email' => LiveChatHelper::isEmailEnabled() ? $request->input('email') : null,
+                'visitor_phone' => LiveChatHelper::isPhoneEnabled() ? $request->input('phone') : null,
+                'visitor_ip' => Helper::getIpFromThirdParty(),
+                'visitor_user_agent' => $request->userAgent(),
+                'current_url' => $request->input('current_url'),
+                'status' => ConversationStatus::OPEN,
+            ]);
+        }
+
+        return $this
+            ->httpResponse()
+            ->setData([
+                'conversation_id' => $conversation->id,
+            ])
+            ->setMessage(trans('plugins/fob-live-chat::live-chat.chat_started'));
+    }
+
+    public function messages(Request $request)
+    {
+        $sessionId = session()->getId();
+        $afterId = (int) $request->input('after_id', 0);
+
+        $conversation = Conversation::query()
+            ->where('session_id', $sessionId)
+            ->where('status', ConversationStatus::OPEN)
+            ->first();
+
+        if (! $conversation) {
+            return $this
+                ->httpResponse()
+                ->setData([
+                    'messages' => [],
+                    'has_conversation' => false,
+                ]);
+        }
+
+        $query = $conversation->messages()->orderBy('id', 'asc');
+
+        if ($afterId > 0) {
+            $query->where('id', '>', $afterId);
+        }
+
+        $messages = $query->get()->map(fn (Message $message) => [
+            'id' => $message->id,
+            'content' => $message->content,
+            'is_from_admin' => $message->is_from_admin,
+            'admin_name' => $message->admin_name,
+            'created_at' => $message->created_at->toIso8601String(),
+        ]);
+
+        // Mark admin messages as read
+        $conversation->messages()
+            ->where('is_from_admin', true)
+            ->where('is_read', false)
+            ->update(['is_read' => true]);
+
+        return $this
+            ->httpResponse()
+            ->setData([
+                'messages' => $messages,
+                'has_conversation' => true,
+            ]);
+    }
+
+    public function send(SendMessageRequest $request)
+    {
+        $sessionId = session()->getId();
+
+        $conversation = Conversation::query()
+            ->where('session_id', $sessionId)
+            ->where('status', ConversationStatus::OPEN)
+            ->first();
+
+        if (! $conversation) {
+            return $this
+                ->httpResponse()
+                ->setError()
+                ->setMessage(trans('plugins/fob-live-chat::live-chat.no_conversation'));
+        }
+
+        $message = Message::query()->create([
+            'conversation_id' => $conversation->id,
+            'content' => $request->input('message'),
+            'is_from_admin' => false,
+        ]);
+
+        $conversation->update(['last_message_at' => now()]);
+
+        return $this
+            ->httpResponse()
+            ->setData([
+                'message' => [
+                    'id' => $message->id,
+                    'content' => $message->content,
+                    'is_from_admin' => false,
+                    'created_at' => $message->created_at->toIso8601String(),
+                ],
+            ])
+            ->setMessage(trans('plugins/fob-live-chat::live-chat.message_sent'));
+    }
+}

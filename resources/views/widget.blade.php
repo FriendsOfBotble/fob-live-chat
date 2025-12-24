@@ -16,7 +16,7 @@
 @endphp
 
 {{-- Embed CSS directly --}}
-<link rel="stylesheet" href="{{ asset('vendor/core/plugins/fob-live-chat/css/live-chat.css') }}?v=1.0.0">
+<link rel="stylesheet" href="{{ asset('vendor/core/plugins/fob-live-chat/css/live-chat.css') }}?v=1.0.1">
 
 <style>
     :root {
@@ -123,4 +123,4 @@
 </div>
 
 {{-- Embed JS directly --}}
-<script src="{{ asset('vendor/core/plugins/fob-live-chat/js/live-chat.js') }}?v=1.0.0"></script>
+<script src="{{ asset('vendor/core/plugins/fob-live-chat/js/live-chat.js') }}?v=1.0.1"></script>

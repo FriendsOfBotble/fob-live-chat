@@ -6,15 +6,20 @@ use Botble\Base\Http\Controllers\BaseController;
 use Botble\Base\Supports\Helper;
 use Carbon\Carbon;
 use FriendsOfBotble\LiveChat\Enums\ConversationStatus;
+use FriendsOfBotble\LiveChat\Events\NewConversationEvent;
 use FriendsOfBotble\LiveChat\Http\Requests\Fronts\SendMessageRequest;
 use FriendsOfBotble\LiveChat\Http\Requests\Fronts\StartChatRequest;
 use FriendsOfBotble\LiveChat\Models\Conversation;
 use FriendsOfBotble\LiveChat\Models\Message;
+use FriendsOfBotble\LiveChat\Services\WebhookService;
 use FriendsOfBotble\LiveChat\Support\LiveChatHelper;
 use Illuminate\Http\Request;
 
 class ChatController extends BaseController
 {
+    public function __construct(protected WebhookService $webhookService)
+    {
+    }
     public function start(StartChatRequest $request)
     {
         $sessionId = session()->getId();
@@ -23,6 +28,8 @@ class ChatController extends BaseController
             ->where('session_id', $sessionId)
             ->where('status', ConversationStatus::OPEN)
             ->first();
+
+        $isNewConversation = false;
 
         if (! $conversation) {
             $conversation = Conversation::query()->create([
@@ -33,8 +40,16 @@ class ChatController extends BaseController
                 'visitor_ip' => Helper::getIpFromThirdParty(),
                 'visitor_user_agent' => $request->userAgent(),
                 'current_url' => $request->input('current_url'),
+                'admin_name' => LiveChatHelper::generateRandomAdminName(),
                 'status' => ConversationStatus::OPEN,
             ]);
+
+            $isNewConversation = true;
+        }
+
+        if ($isNewConversation) {
+            $this->webhookService->sendConversationWebhook($conversation, WebhookService::EVENT_CONVERSATION_STARTED);
+            event(new NewConversationEvent($conversation));
         }
 
         return $this
@@ -119,6 +134,8 @@ class ChatController extends BaseController
         ]);
 
         $conversation->update(['last_message_at' => now()]);
+
+        $this->webhookService->sendMessageWebhook($message, WebhookService::EVENT_MESSAGE_RECEIVED);
 
         return $this
             ->httpResponse()

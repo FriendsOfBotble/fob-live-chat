@@ -19,6 +19,7 @@ class Conversation extends BaseModel
         'visitor_ip',
         'visitor_user_agent',
         'current_url',
+        'admin_name',
         'status',
         'last_message_at',
     ];

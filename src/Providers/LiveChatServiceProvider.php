@@ -3,14 +3,18 @@
 namespace FriendsOfBotble\LiveChat\Providers;
 
 use Botble\Base\Facades\DashboardMenu;
+use Botble\Base\Facades\EmailHandler;
 use Botble\Base\Facades\PanelSectionManager;
 use Botble\Base\PanelSections\PanelSectionItem;
 use Botble\Base\Supports\ServiceProvider;
 use Botble\Base\Traits\LoadAndPublishDataTrait;
 use Botble\Setting\PanelSections\SettingOthersPanelSection;
 use FriendsOfBotble\LiveChat\Enums\ConversationStatus;
+use FriendsOfBotble\LiveChat\Events\NewConversationEvent;
+use FriendsOfBotble\LiveChat\Listeners\SendNewConversationEmailListener;
 use FriendsOfBotble\LiveChat\Models\Conversation;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 
 class LiveChatServiceProvider extends ServiceProvider
 {
@@ -18,14 +22,20 @@ class LiveChatServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        $this->loadHelpers();
+
         $this
             ->setNamespace('plugins/fob-live-chat')
             ->publishAssets()
             ->loadAndPublishViews()
             ->loadRoutes()
-            ->loadAndPublishConfigurations(['permissions'])
+            ->loadAndPublishConfigurations(['permissions', 'email'])
             ->loadAndPublishTranslations()
             ->loadMigrations();
+
+        EmailHandler::addTemplateSettings(FOB_LIVE_CHAT_MODULE_SCREEN_NAME, config('plugins.fob-live-chat.email', []));
+
+        Event::listen(NewConversationEvent::class, SendNewConversationEmailListener::class);
 
         DashboardMenu::default()->beforeRetrieving(function (): void {
             DashboardMenu::make()

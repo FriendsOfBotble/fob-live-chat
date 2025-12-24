@@ -39,6 +39,7 @@ Route::name('fob-live-chat.')->group(function (): void {
             Route::group(['prefix' => 'settings', 'permission' => 'fob-live-chat.settings'], function (): void {
                 Route::get('/', [LiveChatSettingController::class, 'edit'])->name('settings');
                 Route::put('/', [LiveChatSettingController::class, 'update'])->name('settings.update');
+                Route::post('webhook/test', [LiveChatSettingController::class, 'testWebhook'])->name('settings.webhook.test');
             });
         });
     });

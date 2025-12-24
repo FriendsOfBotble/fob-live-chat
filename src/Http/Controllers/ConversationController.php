@@ -17,7 +17,7 @@ class ConversationController extends BaseController
 
         $conversations = Conversation::query()
             ->withCount([
-                'messages as unread_count' => function ($query) {
+                'messages as unread_count' => function ($query): void {
                     $query->where('is_from_admin', false)->where('is_read', false);
                 },
             ])
@@ -28,7 +28,7 @@ class ConversationController extends BaseController
                     ->latest()
                     ->limit(1),
             ])
-            ->orderByDesc('last_message_at')
+            ->latest('last_message_at')
             ->get();
 
         $selectedId = $request->input('id', $conversations->first()?->id);
@@ -84,7 +84,7 @@ class ConversationController extends BaseController
             'content' => $request->input('message'),
             'is_from_admin' => true,
             'admin_id' => $user->getKey(),
-            'admin_name' => setting('fob_live_chat_admin_name') ?: $user->name,
+            'admin_name' => $conversation->admin_name ?: (setting('fob_live_chat_admin_name') ?: $user->name),
         ]);
 
         $conversation->update(['last_message_at' => now()]);

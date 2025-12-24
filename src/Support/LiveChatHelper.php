@@ -77,7 +77,7 @@ class LiveChatHelper
 
     public static function getWelcomeMessage(): string
     {
-        return setting('fob_live_chat_welcome_message', trans('plugins/fob-live-chat::live-chat.default_welcome_message'));
+        return setting('fob_live_chat_welcome_message') ?: trans('plugins/fob-live-chat::live-chat.default_welcome_message');
     }
 
     public static function isEmailEnabled(): bool
@@ -103,5 +103,42 @@ class LiveChatHelper
     public static function getAdminName(): string
     {
         return setting('fob_live_chat_admin_name', trans('plugins/fob-live-chat::live-chat.default_admin_name'));
+    }
+
+    public static function isRandomAdminNamesEnabled(): bool
+    {
+        return (bool) setting('fob_live_chat_random_admin_names_enabled', false);
+    }
+
+    /**
+     * @return array<int, string>
+     */
+    public static function getRandomAdminNames(): array
+    {
+        $names = setting('fob_live_chat_random_admin_names', '');
+
+        if (empty($names)) {
+            return [];
+        }
+
+        return array_filter(
+            array_map('trim', explode("\n", $names)),
+            fn ($name) => ! empty($name)
+        );
+    }
+
+    public static function generateRandomAdminName(): ?string
+    {
+        if (! self::isRandomAdminNamesEnabled()) {
+            return null;
+        }
+
+        $names = self::getRandomAdminNames();
+
+        if (empty($names)) {
+            return null;
+        }
+
+        return $names[array_rand($names)];
     }
 }

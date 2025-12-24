@@ -13,6 +13,8 @@ class LiveChatSettingRequest extends Request
             'fob_live_chat_widget_title' => ['nullable', 'string', 'max:100'],
             'fob_live_chat_welcome_message' => ['nullable', 'string', 'max:500'],
             'fob_live_chat_admin_name' => ['nullable', 'string', 'max:120'],
+            'fob_live_chat_random_admin_names_enabled' => ['nullable', 'in:0,1'],
+            'fob_live_chat_random_admin_names' => ['nullable', 'string', 'max:2000'],
             'fob_live_chat_primary_color' => ['nullable', 'string', 'max:20'],
             'fob_live_chat_position' => ['nullable', 'in:left,right'],
             'fob_live_chat_email_required' => ['nullable', 'in:0,1'],
@@ -21,6 +23,19 @@ class LiveChatSettingRequest extends Request
             'fob_live_chat_mandatory_fields' => ['nullable', 'array'],
             'fob_live_chat_mandatory_fields.*' => ['in:email,phone'],
             'fob_live_chat_poll_interval' => ['nullable', 'integer', 'min:1000', 'max:30000'],
+            'fob_live_chat_enable_email_notification' => ['nullable', 'in:0,1'],
+            'fob_live_chat_notification_emails' => ['nullable', 'string', 'max:500'],
+            'fob_live_chat_enable_webhooks' => ['nullable', 'in:0,1'],
+            'fob_live_chat_message_received_webhook_url' => ['nullable', 'url', 'max:500'],
+            'fob_live_chat_conversation_started_webhook_url' => ['nullable', 'url', 'max:500'],
+        ];
+    }
+
+    public function attributes(): array
+    {
+        return [
+            'fob_live_chat_message_received_webhook_url' => trans('plugins/fob-live-chat::live-chat.webhook.message_received_url'),
+            'fob_live_chat_conversation_started_webhook_url' => trans('plugins/fob-live-chat::live-chat.webhook.conversation_started_url'),
         ];
     }
 }

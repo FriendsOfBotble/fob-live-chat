@@ -63,7 +63,7 @@ class ConversationTable extends TableAbstract
                         'last_message_at',
                         'created_at',
                     ])
-                    ->orderByDesc('last_message_at');
+                    ->latest('last_message_at');
             })
             ->onRowClick(function (Conversation $conversation): string {
                 return route('fob-live-chat.conversations.show', $conversation->id);

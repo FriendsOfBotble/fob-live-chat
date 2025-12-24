@@ -620,6 +620,10 @@
         flex-shrink: 0;
         transition: all var(--fob-transition-fast) ease;
 
+        svg {
+            margin: 0;
+        }
+
         &:hover {
             transform: scale(1.05);
         }

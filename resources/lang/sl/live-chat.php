@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Začni klepet',
     'type_message' => 'Vnesite sporočilo...',
     'send' => 'Pošlji',
+    'default_admin_name' => 'Podpora',
     'default_welcome_message' => 'Pozdravljeni! Hvala, ker ste se obrnili na nas. Kako vam lahko danes pomagam?',
     'conversation_statuses' => [
         'open' => 'Odprt',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Pozdravno sporočilo',
             'welcome_message_help' => 'Prvo sporočilo, ki ga obiskovalci vidijo ob odprtju widgeta za klepet. Pustite prazno za uporabo privzetega sporočila.',
             'welcome_message_placeholder' => 'Pozdravljeni! Hvala, ker ste se obrnili na nas. Kako vam lahko danes pomagam?',
+            'admin_name' => 'Ime skrbnika',
+            'admin_name_help' => 'Ime, prikazano za odgovore skrbnika v pripomočku za klepet.',
+            'admin_name_placeholder' => 'Podpora',
             'primary_color' => 'Primarna barva',
             'primary_color_help' => 'Glavna barva gumba in glave widgeta za klepet. Izberite barvo, ki se ujema z vašo blagovno znamko.',
             'position' => 'Položaj widgeta',

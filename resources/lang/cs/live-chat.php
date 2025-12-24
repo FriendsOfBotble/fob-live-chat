@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Zahájit chat',
     'type_message' => 'Napište zprávu...',
     'send' => 'Odeslat',
+    'default_admin_name' => 'Podpora',
     'default_welcome_message' => 'Dobrý den! Děkujeme, že jste se ozvali. Jak vám dnes mohu pomoci?',
     'conversation_statuses' => [
         'open' => 'Otevřená',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Uvítací zpráva',
             'welcome_message_help' => 'První zpráva, kterou návštěvníci uvidí po otevření chatovacího widgetu. Nechte prázdné pro použití výchozí zprávy.',
             'welcome_message_placeholder' => 'Dobrý den! Děkujeme, že jste se ozvali. Jak vám dnes mohu pomoci?',
+            'admin_name' => 'Jméno administrátora',
+            'admin_name_help' => 'Jméno zobrazené pro odpovědi administrátora v chatovém widgetu.',
+            'admin_name_placeholder' => 'Podpora',
             'primary_color' => 'Primární barva',
             'primary_color_help' => 'Hlavní barva tlačítka a záhlaví chatovacího widgetu. Zvolte barvu, která odpovídá vaší značce.',
             'position' => 'Umístění widgetu',

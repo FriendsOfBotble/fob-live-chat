@@ -43,6 +43,7 @@ return [
     'start_chat' => '开始聊天',
     'type_message' => '输入消息...',
     'send' => '发送',
+    'default_admin_name' => '客服',
     'default_welcome_message' => '您好！感谢您的联系。今天我能帮您什么？',
     'conversation_statuses' => [
         'open' => '开启',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => '欢迎消息',
             'welcome_message_help' => '访客打开聊天小部件时看到的第一条消息。留空将使用默认消息。',
             'welcome_message_placeholder' => '您好！感谢您的联系。今天我能帮您什么？',
+            'admin_name' => '管理员名称',
+            'admin_name_help' => '在聊天小部件中显示的管理员回复名称。',
+            'admin_name_placeholder' => '客服',
             'primary_color' => '主色',
             'primary_color_help' => '聊天小部件按钮和头部的主色。选择与您的品牌匹配的颜色。',
             'position' => '小部件位置',

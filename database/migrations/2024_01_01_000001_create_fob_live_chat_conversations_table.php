@@ -17,7 +17,9 @@ return new class () extends Migration {
             $table->string('session_id', 100)->index();
             $table->string('visitor_name', 120);
             $table->string('visitor_email', 120)->nullable();
+            $table->string('visitor_phone', 25)->nullable();
             $table->string('visitor_ip', 45)->nullable();
+            $table->string('current_url', 2048)->nullable();
             $table->text('visitor_user_agent')->nullable();
             $table->string('status', 20)->default(ConversationStatus::OPEN)->index();
             $table->timestamp('last_message_at')->nullable();

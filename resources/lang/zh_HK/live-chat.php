@@ -43,6 +43,7 @@ return [
     'start_chat' => '開始聊天',
     'type_message' => '輸入訊息...',
     'send' => '送出',
+    'default_admin_name' => '客服',
     'default_welcome_message' => '你好！感謝你的聯絡。今天我可以如何幫你？',
     'conversation_statuses' => [
         'open' => '開啟',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => '歡迎訊息',
             'welcome_message_help' => '訪客開啟聊天小工具時看到的第一則訊息。留空以使用預設訊息。',
             'welcome_message_placeholder' => '你好！感謝你的聯絡。今天我可以如何幫你？',
+            'admin_name' => '管理員名稱',
+            'admin_name_help' => '在聊天小工具中顯示的管理員回覆名稱。',
+            'admin_name_placeholder' => '客服',
             'primary_color' => '主要顏色',
             'primary_color_help' => '聊天小工具按鈕與標題列的主要顏色。選擇符合你品牌的顏色。',
             'position' => '小工具位置',

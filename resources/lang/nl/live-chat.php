@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Chat starten',
     'type_message' => 'Typ een bericht...',
     'send' => 'Verzenden',
+    'default_admin_name' => 'Ondersteuning',
     'default_welcome_message' => 'Hoi! Bedankt dat je contact opneemt. Hoe kan ik je vandaag helpen?',
     'conversation_statuses' => [
         'open' => 'Geopend',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Welkomstbericht',
             'welcome_message_help' => 'Het eerste bericht dat bezoekers zien wanneer ze de chat-widget openen. Laat leeg om het standaardbericht te gebruiken.',
             'welcome_message_placeholder' => 'Hoi! Bedankt dat je contact opneemt. Hoe kan ik je vandaag helpen?',
+            'admin_name' => 'Beheerdersnaam',
+            'admin_name_help' => 'De naam die wordt weergegeven voor beheerdersantwoorden in de chatwidget.',
+            'admin_name_placeholder' => 'Ondersteuning',
             'primary_color' => 'Primaire kleur',
             'primary_color_help' => 'De hoofdkleur voor de knop en header van de chat-widget. Kies een kleur die past bij je merk.',
             'position' => 'Widgetpositie',

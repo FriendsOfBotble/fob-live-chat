@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Chat starten',
     'type_message' => 'Nachricht eingeben...',
     'send' => 'Senden',
+    'default_admin_name' => 'Support',
     'default_welcome_message' => 'Hallo! Danke, dass Sie sich gemeldet haben. Wie kann ich Ihnen heute helfen?',
     'conversation_statuses' => [
         'open' => 'Offen',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Willkommensnachricht',
             'welcome_message_help' => 'Die erste Nachricht, die Besucher sehen, wenn sie das Chat-Widget öffnen. Leer lassen, um die Standardnachricht zu verwenden.',
             'welcome_message_placeholder' => 'Hallo! Danke, dass Sie sich gemeldet haben. Wie kann ich Ihnen heute helfen?',
+            'admin_name' => 'Admin-Name',
+            'admin_name_help' => 'Der Name, der für Admin-Antworten im Chat-Widget angezeigt wird.',
+            'admin_name_placeholder' => 'Support',
             'primary_color' => 'Primärfarbe',
             'primary_color_help' => 'Die Hauptfarbe für die Schaltfläche und die Kopfzeile des Chat-Widgets. Wählen Sie eine Farbe, die zu Ihrer Marke passt.',
             'position' => 'Widget-Position',

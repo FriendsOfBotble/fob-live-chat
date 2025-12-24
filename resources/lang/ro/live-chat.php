@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Începe chatul',
     'type_message' => 'Scrieți un mesaj...',
     'send' => 'Trimite',
+    'default_admin_name' => 'Suport',
     'default_welcome_message' => 'Salut! Mulțumim că ne-ați contactat. Cum vă pot ajuta astăzi?',
     'conversation_statuses' => [
         'open' => 'Deschis',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Mesaj de bun venit',
             'welcome_message_help' => 'Primul mesaj pe care vizitatorii îl văd când deschid widgetul de chat. Lăsați gol pentru a folosi mesajul implicit.',
             'welcome_message_placeholder' => 'Salut! Mulțumim că ne-ați contactat. Cum vă pot ajuta astăzi?',
+            'admin_name' => 'Nume administrator',
+            'admin_name_help' => 'Numele afișat pentru răspunsurile administratorului în widgetul de chat.',
+            'admin_name_placeholder' => 'Suport',
             'primary_color' => 'Culoare principală',
             'primary_color_help' => 'Culoarea principală pentru butonul și antetul widgetului de chat. Alegeți o culoare care să se potrivească brandului dvs.',
             'position' => 'Poziția widgetului',

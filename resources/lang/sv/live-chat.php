@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Starta chatt',
     'type_message' => 'Skriv ett meddelande...',
     'send' => 'Skicka',
+    'default_admin_name' => 'Support',
     'default_welcome_message' => 'Hej! Tack för att du hör av dig. Hur kan jag hjälpa dig idag?',
     'conversation_statuses' => [
         'open' => 'Öppen',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Välkomstmeddelande',
             'welcome_message_help' => 'Det första meddelandet som besökare ser när de öppnar chatt-widgeten. Lämna tomt för att använda standardmeddelandet.',
             'welcome_message_placeholder' => 'Hej! Tack för att du hör av dig. Hur kan jag hjälpa dig idag?',
+            'admin_name' => 'Adminnamn',
+            'admin_name_help' => 'Namnet som visas för adminsvar i chattwidgeten.',
+            'admin_name_placeholder' => 'Support',
             'primary_color' => 'Primärfärg',
             'primary_color_help' => 'Huvudfärgen för chatt-widgetens knapp och header. Välj en färg som passar ditt varumärke.',
             'position' => 'Widgetposition',

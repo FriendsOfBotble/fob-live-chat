@@ -43,6 +43,7 @@ return [
     'start_chat' => '채팅 시작',
     'type_message' => '메시지를 입력하세요...',
     'send' => '보내기',
+    'default_admin_name' => '지원',
     'default_welcome_message' => '안녕하세요! 문의해 주셔서 감사합니다. 오늘 무엇을 도와드릴까요?',
     'conversation_statuses' => [
         'open' => '열림',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => '환영 메시지',
             'welcome_message_help' => '방문자가 채팅 위젯을 열 때 처음 보는 메시지입니다. 기본 메시지를 사용하려면 비워 두세요.',
             'welcome_message_placeholder' => '안녕하세요! 문의해 주셔서 감사합니다. 오늘 무엇을 도와드릴까요?',
+            'admin_name' => '관리자 이름',
+            'admin_name_help' => '채팅 위젯에서 관리자 답변에 표시되는 이름입니다.',
+            'admin_name_placeholder' => '지원',
             'primary_color' => '기본 색상',
             'primary_color_help' => '채팅 위젯 버튼과 헤더의 기본 색상입니다. 브랜드와 어울리는 색상을 선택하세요.',
             'position' => '위젯 위치',

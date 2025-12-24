@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Započni chat',
     'type_message' => 'Upišite poruku...',
     'send' => 'Pošalji',
+    'default_admin_name' => 'Podrška',
     'default_welcome_message' => 'Pozdrav! Hvala što ste se javili. Kako vam mogu pomoći danas?',
     'conversation_statuses' => [
         'open' => 'Otvoren',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Poruka dobrodošlice',
             'welcome_message_help' => 'Prva poruka koju posjetitelji vide kada otvore chat widget. Ostavite prazno da biste koristili zadanu poruku.',
             'welcome_message_placeholder' => 'Pozdrav! Hvala što ste se javili. Kako vam mogu pomoći danas?',
+            'admin_name' => 'Ime administratora',
+            'admin_name_help' => 'Ime prikazano za odgovore administratora u chat widgetu.',
+            'admin_name_placeholder' => 'Podrška',
             'primary_color' => 'Primarna boja',
             'primary_color_help' => 'Glavna boja gumba i zaglavlja chat widgeta. Odaberite boju koja odgovara vašem brendu.',
             'position' => 'Položaj widgeta',

@@ -44,6 +44,7 @@ return [
     'type_message' => 'Type a message...',
     'send' => 'Send',
     'default_welcome_message' => 'Hello! Thanks for reaching out. How can I help you today?',
+    'default_admin_name' => 'Support',
     'conversation_statuses' => [
         'open' => 'Open',
         'closed' => 'Closed',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Welcome Message',
             'welcome_message_help' => 'The first message visitors see when they open the chat widget. Leave empty to use the default message.',
             'welcome_message_placeholder' => 'Hello! Thanks for reaching out. How can I help you today?',
+            'admin_name' => 'Admin Name',
+            'admin_name_help' => 'The name displayed for admin replies in the chat widget.',
+            'admin_name_placeholder' => 'Support',
             'primary_color' => 'Primary Color',
             'primary_color_help' => 'The main color for the chat widget button and header. Choose a color that matches your brand.',
             'position' => 'Widget Position',

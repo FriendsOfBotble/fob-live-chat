@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Chat indítása',
     'type_message' => 'Írjon üzenetet...',
     'send' => 'Küldés',
+    'default_admin_name' => 'Támogatás',
     'default_welcome_message' => 'Üdv! Köszönjük, hogy jelentkezett. Miben segíthetek ma?',
     'conversation_statuses' => [
         'open' => 'Nyitott',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Üdvözlő üzenet',
             'welcome_message_help' => 'Az első üzenet, amelyet a látogatók látnak, amikor megnyitják a chat widgetet. Hagyja üresen az alapértelmezett üzenet használatához.',
             'welcome_message_placeholder' => 'Üdv! Köszönjük, hogy jelentkezett. Miben segíthetek ma?',
+            'admin_name' => 'Adminisztrátor neve',
+            'admin_name_help' => 'A chat widgetben az adminisztrátori válaszokhoz megjelenített név.',
+            'admin_name_placeholder' => 'Támogatás',
             'primary_color' => 'Elsődleges szín',
             'primary_color_help' => 'A chat widget gombjának és fejlécének fő színe. Válasszon a márkájához illő színt.',
             'position' => 'Widget pozíciója',

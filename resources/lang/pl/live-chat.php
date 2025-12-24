@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Rozpocznij czat',
     'type_message' => 'Wpisz wiadomość...',
     'send' => 'Wyślij',
+    'default_admin_name' => 'Wsparcie',
     'default_welcome_message' => 'Cześć! Dziękujemy za kontakt. Jak mogę Ci dziś pomóc?',
     'conversation_statuses' => [
         'open' => 'Otwarte',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Wiadomość powitalna',
             'welcome_message_help' => 'Pierwsza wiadomość, którą odwiedzający widzą po otwarciu widgetu czatu. Pozostaw puste, aby użyć domyślnej wiadomości.',
             'welcome_message_placeholder' => 'Cześć! Dziękujemy za kontakt. Jak mogę Ci dziś pomóc?',
+            'admin_name' => 'Nazwa administratora',
+            'admin_name_help' => 'Nazwa wyświetlana dla odpowiedzi administratora w widgecie czatu.',
+            'admin_name_placeholder' => 'Wsparcie',
             'primary_color' => 'Kolor główny',
             'primary_color_help' => 'Główny kolor przycisku i nagłówka widgetu czatu. Wybierz kolor pasujący do Twojej marki.',
             'position' => 'Pozycja widgetu',

@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Sohbeti başlat',
     'type_message' => 'Bir mesaj yazın...',
     'send' => 'Gönder',
+    'default_admin_name' => 'Destek',
     'default_welcome_message' => 'Merhaba! Bizimle iletişime geçtiğiniz için teşekkürler. Bugün nasıl yardımcı olabilirim?',
     'conversation_statuses' => [
         'open' => 'Açık',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Hoş geldiniz mesajı',
             'welcome_message_help' => 'Ziyaretçiler sohbet widget\'ını açtığında gördükleri ilk mesaj. Varsayılan mesajı kullanmak için boş bırakın.',
             'welcome_message_placeholder' => 'Merhaba! Bizimle iletişime geçtiğiniz için teşekkürler. Bugün nasıl yardımcı olabilirim?',
+            'admin_name' => 'Yönetici Adı',
+            'admin_name_help' => 'Sohbet widget\'ında yönetici yanıtları için görüntülenen ad.',
+            'admin_name_placeholder' => 'Destek',
             'primary_color' => 'Birincil renk',
             'primary_color_help' => 'Sohbet widget\'ı düğmesi ve başlığının ana rengi. Markanıza uygun bir renk seçin.',
             'position' => 'Widget konumu',

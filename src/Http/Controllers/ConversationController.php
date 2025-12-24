@@ -84,7 +84,7 @@ class ConversationController extends BaseController
             'content' => $request->input('message'),
             'is_from_admin' => true,
             'admin_id' => $user->getKey(),
-            'admin_name' => $user->name,
+            'admin_name' => setting('fob_live_chat_admin_name') ?: $user->name,
         ]);
 
         $conversation->update(['last_message_at' => now()]);

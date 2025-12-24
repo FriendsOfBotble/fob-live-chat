@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Simulan ang chat',
     'type_message' => 'Mag-type ng mensahe...',
     'send' => 'Ipadala',
+    'default_admin_name' => 'Suporta',
     'default_welcome_message' => 'Kumusta! Salamat sa pakikipag-ugnayan. Paano kita matutulungan ngayon?',
     'conversation_statuses' => [
         'open' => 'Bukas',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Mensahe ng pagbati',
             'welcome_message_help' => 'Ang unang mensaheng nakikita ng mga bisita kapag binuksan nila ang chat widget. Iwanang walang laman upang gamitin ang default na mensahe.',
             'welcome_message_placeholder' => 'Kumusta! Salamat sa pakikipag-ugnayan. Paano kita matutulungan ngayon?',
+            'admin_name' => 'Pangalan ng Admin',
+            'admin_name_help' => 'Ang pangalang ipinapakita para sa mga tugon ng admin sa chat widget.',
+            'admin_name_placeholder' => 'Suporta',
             'primary_color' => 'Pangunahing kulay',
             'primary_color_help' => 'Ang pangunahing kulay para sa pindutan at header ng chat widget. Pumili ng kulay na tumutugma sa iyong brand.',
             'position' => 'Posisyon ng widget',

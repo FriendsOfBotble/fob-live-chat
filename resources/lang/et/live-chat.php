@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Alusta vestlust',
     'type_message' => 'Kirjuta sõnum...',
     'send' => 'Saada',
+    'default_admin_name' => 'Tugi',
     'default_welcome_message' => 'Tere! Aitäh, et võtsite ühendust. Kuidas saan teid täna aidata?',
     'conversation_statuses' => [
         'open' => 'Avatud',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Tervitussõnum',
             'welcome_message_help' => 'Esimene sõnum, mida külastajad näevad vestlusvidinat avades. Jätke tühjaks, et kasutada vaikesõnumit.',
             'welcome_message_placeholder' => 'Tere! Aitäh, et võtsite ühendust. Kuidas saan teid täna aidata?',
+            'admin_name' => 'Administraatori nimi',
+            'admin_name_help' => 'Vestlusvidinas administraatori vastuste jaoks kuvatav nimi.',
+            'admin_name_placeholder' => 'Tugi',
             'primary_color' => 'Põhivärv',
             'primary_color_help' => 'Vestlusvidina nupu ja päise põhivärv. Valige värv, mis sobib teie brändiga.',
             'position' => 'Vidina asukoht',

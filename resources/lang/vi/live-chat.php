@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Bắt đầu chat',
     'type_message' => 'Nhập tin nhắn...',
     'send' => 'Gửi',
+    'default_admin_name' => 'Hỗ trợ',
     'default_welcome_message' => 'Xin chào! Cảm ơn bạn đã liên hệ. Tôi có thể giúp gì cho bạn hôm nay?',
     'conversation_statuses' => [
         'open' => 'Mở',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Tin nhắn chào mừng',
             'welcome_message_help' => 'Tin nhắn đầu tiên khách truy cập nhìn thấy khi mở widget chat. Để trống để dùng tin nhắn mặc định.',
             'welcome_message_placeholder' => 'Xin chào! Cảm ơn bạn đã liên hệ. Tôi có thể giúp gì cho bạn hôm nay?',
+            'admin_name' => 'Tên quản trị viên',
+            'admin_name_help' => 'Tên hiển thị cho phản hồi của quản trị viên trong widget chat.',
+            'admin_name_placeholder' => 'Hỗ trợ',
             'primary_color' => 'Màu chính',
             'primary_color_help' => 'Màu chính cho nút và tiêu đề của widget chat. Chọn màu phù hợp với thương hiệu của bạn.',
             'position' => 'Vị trí widget',

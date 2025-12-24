@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Start chat',
     'type_message' => 'Skriv en besked...',
     'send' => 'Afsend',
+    'default_admin_name' => 'Support',
     'default_welcome_message' => 'Hej! Tak fordi du tog kontakt. Hvordan kan jeg hjælpe dig i dag?',
     'conversation_statuses' => [
         'open' => 'Åben',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Velkomstbesked',
             'welcome_message_help' => 'Den første besked, besøgende ser, når de åbner chat-widgetten. Lad være tom for at bruge standardbeskeden.',
             'welcome_message_placeholder' => 'Hej! Tak fordi du tog kontakt. Hvordan kan jeg hjælpe dig i dag?',
+            'admin_name' => 'Admin-navn',
+            'admin_name_help' => 'Navnet, der vises for admin-svar i chat-widgetten.',
+            'admin_name_placeholder' => 'Support',
             'primary_color' => 'Primær farve',
             'primary_color_help' => 'Den primære farve for chat-widgettens knap og header. Vælg en farve, der matcher dit brand.',
             'position' => 'Widgetplacering',

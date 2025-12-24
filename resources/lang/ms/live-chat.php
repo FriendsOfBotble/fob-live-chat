@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Mulakan chat',
     'type_message' => 'Taip mesej...',
     'send' => 'Hantar',
+    'default_admin_name' => 'Sokongan',
     'default_welcome_message' => 'Hai! Terima kasih kerana menghubungi kami. Bagaimana saya boleh membantu anda hari ini?',
     'conversation_statuses' => [
         'open' => 'Dibuka',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Mesej alu-aluan',
             'welcome_message_help' => 'Mesej pertama yang dilihat pelawat apabila mereka membuka widget chat. Biarkan kosong untuk menggunakan mesej lalai.',
             'welcome_message_placeholder' => 'Hai! Terima kasih kerana menghubungi kami. Bagaimana saya boleh membantu anda hari ini?',
+            'admin_name' => 'Nama Admin',
+            'admin_name_help' => 'Nama yang dipaparkan untuk balasan admin dalam widget sembang.',
+            'admin_name_placeholder' => 'Sokongan',
             'primary_color' => 'Warna utama',
             'primary_color_help' => 'Warna utama untuk butang dan pengepala widget chat. Pilih warna yang sepadan dengan jenama anda.',
             'position' => 'Kedudukan widget',

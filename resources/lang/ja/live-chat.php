@@ -43,6 +43,7 @@ return [
     'start_chat' => 'チャットを開始',
     'type_message' => 'メッセージを入力...',
     'send' => '送信',
+    'default_admin_name' => 'サポート',
     'default_welcome_message' => 'こんにちは！お問い合わせありがとうございます。本日どのようにお手伝いできますか？',
     'conversation_statuses' => [
         'open' => 'オープン',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'ウェルカムメッセージ',
             'welcome_message_help' => 'チャットウィジェットを開いたときに訪問者が最初に見るメッセージ。空欄にすると既定のメッセージが使われます。',
             'welcome_message_placeholder' => 'こんにちは！お問い合わせありがとうございます。本日どのようにお手伝いできますか？',
+            'admin_name' => '管理者名',
+            'admin_name_help' => 'チャットウィジェットで管理者の返信に表示される名前。',
+            'admin_name_placeholder' => 'サポート',
             'primary_color' => 'メインカラー',
             'primary_color_help' => 'チャットウィジェットのボタンとヘッダーの主な色。ブランドに合った色を選択してください。',
             'position' => 'ウィジェット位置',

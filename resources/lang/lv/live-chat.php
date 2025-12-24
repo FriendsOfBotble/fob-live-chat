@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Sākt čatu',
     'type_message' => 'Rakstiet ziņojumu...',
     'send' => 'Sūtīt',
+    'default_admin_name' => 'Atbalsts',
     'default_welcome_message' => 'Sveiki! Paldies, ka sazinājāties. Kā es varu palīdzēt šodien?',
     'conversation_statuses' => [
         'open' => 'Atvērts',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Sveiciena ziņojums',
             'welcome_message_help' => 'Pirmais ziņojums, ko apmeklētāji redz, atverot čata logrīku. Atstājiet tukšu, lai izmantotu noklusējuma ziņojumu.',
             'welcome_message_placeholder' => 'Sveiki! Paldies, ka sazinājāties. Kā es varu palīdzēt šodien?',
+            'admin_name' => 'Administratora vārds',
+            'admin_name_help' => 'Čata logrīkā rādītais administratora atbilžu vārds.',
+            'admin_name_placeholder' => 'Atbalsts',
             'primary_color' => 'Galvenā krāsa',
             'primary_color_help' => 'Galvenā krāsa čata logrīka pogai un galvenei. Izvēlieties krāsu, kas atbilst jūsu zīmolam.',
             'position' => 'Logrīka novietojums',

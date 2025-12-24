@@ -43,6 +43,7 @@ return [
     'start_chat' => 'התחל צ\'אט',
     'type_message' => 'הקלד הודעה...',
     'send' => 'שלח',
+    'default_admin_name' => 'תמיכה',
     'default_welcome_message' => 'שלום! תודה שפנית אלינו. איך אוכל לעזור לך היום?',
     'conversation_statuses' => [
         'open' => 'פתוח',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'הודעת ברוך הבא',
             'welcome_message_help' => 'ההודעה הראשונה שמבקרים רואים כאשר הם פותחים את ווידג\'ט הצ\'אט. השאר ריק כדי להשתמש בהודעה המוגדרת כברירת מחדל.',
             'welcome_message_placeholder' => 'שלום! תודה שפנית אלינו. איך אוכל לעזור לך היום?',
+            'admin_name' => 'שם מנהל',
+            'admin_name_help' => 'השם המוצג לתגובות המנהל בווידג\'ט הצ\'אט.',
+            'admin_name_placeholder' => 'תמיכה',
             'primary_color' => 'צבע ראשי',
             'primary_color_help' => 'הצבע הראשי של כפתור וכותרת הווידג\'ט של הצ\'אט. בחר צבע שתואם למותג שלך.',
             'position' => 'מיקום הווידג\'ט',

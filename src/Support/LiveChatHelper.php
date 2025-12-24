@@ -99,4 +99,9 @@ class LiveChatHelper
     {
         return in_array('phone', self::getMandatoryFields(), true);
     }
+
+    public static function getAdminName(): string
+    {
+        return setting('fob_live_chat_admin_name', trans('plugins/fob-live-chat::live-chat.default_admin_name'));
+    }
 }

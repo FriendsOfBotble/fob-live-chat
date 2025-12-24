@@ -4,6 +4,7 @@ namespace FriendsOfBotble\LiveChat\Http\Controllers\Fronts;
 
 use Botble\Base\Http\Controllers\BaseController;
 use Botble\Base\Supports\Helper;
+use Carbon\Carbon;
 use FriendsOfBotble\LiveChat\Enums\ConversationStatus;
 use FriendsOfBotble\LiveChat\Http\Requests\Fronts\SendMessageRequest;
 use FriendsOfBotble\LiveChat\Http\Requests\Fronts\StartChatRequest;
@@ -47,7 +48,7 @@ class ChatController extends BaseController
     public function messages(Request $request)
     {
         $sessionId = session()->getId();
-        $afterId = (int) $request->input('after_id', 0);
+        $after = $request->input('after');
 
         $conversation = Conversation::query()
             ->where('session_id', $sessionId)
@@ -63,14 +64,18 @@ class ChatController extends BaseController
                 ]);
         }
 
-        $query = $conversation->messages()->orderBy('id', 'asc');
+        $query = $conversation->messages()->orderBy('created_at', 'asc');
 
-        if ($afterId > 0) {
-            $query->where('id', '>', $afterId);
+        if ($after) {
+            try {
+                $afterTime = Carbon::parse($after)->setTimezone(config('app.timezone'));
+                $query->where('created_at', '>', $afterTime->toDateTimeString());
+            } catch (\Exception) {
+            }
         }
 
         $messages = $query->get()->map(fn (Message $message) => [
-            'id' => $message->id,
+            'id' => $message->getKey(),
             'content' => $message->content,
             'is_from_admin' => $message->is_from_admin,
             'admin_name' => $message->admin_name,

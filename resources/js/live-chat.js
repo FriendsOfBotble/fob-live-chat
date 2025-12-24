@@ -4,7 +4,7 @@ $(() => {
 
     const config = $container.data('config');
     let conversationStarted = false;
-    let lastMessageId = 0;
+    let lastMessageTime = null;
     let pollTimer = null;
     let isWindowOpen = false;
 
@@ -117,8 +117,8 @@ $(() => {
             data: { message: message },
             dataType: 'json',
             success: (res) => {
-                if (res.data?.message) {
-                    lastMessageId = Math.max(lastMessageId, res.data.message.id);
+                if (res.data?.message?.created_at) {
+                    lastMessageTime = res.data.message.created_at;
                 }
             },
             error: (xhr) => {
@@ -146,14 +146,17 @@ $(() => {
         $.ajax({
             url: config.messagesUrl,
             type: 'GET',
-            data: { after_id: lastMessageId },
+            data: lastMessageTime ? { after: lastMessageTime } : {},
             dataType: 'json',
             success: (res) => {
                 if (res.data?.messages && res.data.messages.length > 0) {
                     res.data.messages.forEach(msg => {
-                        if (msg.id > lastMessageId) {
+                        // Only show admin messages from polling (visitor messages are shown optimistically)
+                        if (msg.is_from_admin) {
                             appendMessage(msg);
-                            lastMessageId = msg.id;
+                        }
+                        if (msg.created_at) {
+                            lastMessageTime = msg.created_at;
                         }
                     });
                 }
@@ -212,8 +215,8 @@ $(() => {
 
                 res.data.messages.forEach(msg => {
                     appendMessage(msg);
-                    if (msg.id > lastMessageId) {
-                        lastMessageId = msg.id;
+                    if (msg.created_at) {
+                        lastMessageTime = msg.created_at;
                     }
                 });
 

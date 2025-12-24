@@ -43,6 +43,7 @@ return [
     'start_chat' => 'بدء الدردشة',
     'type_message' => 'اكتب رسالة...',
     'send' => 'إرسال',
+    'default_admin_name' => 'الدعم',
     'default_welcome_message' => 'مرحبًا! شكرًا لتواصلك. كيف يمكنني مساعدتك اليوم؟',
     'conversation_statuses' => [
         'open' => 'مفتوحة',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'رسالة الترحيب',
             'welcome_message_help' => 'أول رسالة يراها الزوار عند فتح أداة الدردشة. اتركه فارغًا لاستخدام الرسالة الافتراضية.',
             'welcome_message_placeholder' => 'مرحبًا! شكرًا لتواصلك. كيف يمكنني مساعدتك اليوم؟',
+            'admin_name' => 'اسم المسؤول',
+            'admin_name_help' => 'الاسم المعروض لردود المسؤول في أداة الدردشة.',
+            'admin_name_placeholder' => 'الدعم',
             'primary_color' => 'اللون الأساسي',
             'primary_color_help' => 'اللون الرئيسي لزر ورأس أداة الدردشة. اختر لونًا يتناسب مع علامتك التجارية.',
             'position' => 'موضع الأداة',

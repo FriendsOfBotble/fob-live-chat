@@ -18,9 +18,23 @@ Go to the **Admin Panel** and click on the **Plugins** tab. Click on the "Add ne
 2. Extract the downloaded file and upload the extracted folder to the `platform/plugins` directory.
 3. Go to **Admin** > **Plugins** and click on the **Activate** button.
 
-## Screenshot
+## Screenshots
 
-Screenshots coming soon.
+### Chat Widget
+
+![Chat Widget - Closed](./art/live-chat-widget-1.png)
+
+![Chat Widget - Open](./art/live-chat-widget-2.png)
+
+### Admin Panel
+
+![Admin Messenger](./art/live-chat-admin.png)
+
+### Settings
+
+![Settings - General](./art/live-chat-setting-1.png)
+
+![Settings - Fields](./art/live-chat-setting-2.png)
 
 ## Changelog
 

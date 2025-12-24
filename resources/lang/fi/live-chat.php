@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Aloita chat',
     'type_message' => 'Kirjoita viesti...',
     'send' => 'Lähetä',
+    'default_admin_name' => 'Tuki',
     'default_welcome_message' => 'Hei! Kiitos yhteydenotosta. Miten voin auttaa tänään?',
     'conversation_statuses' => [
         'open' => 'Avoin',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Tervetuloviesti',
             'welcome_message_help' => 'Ensimmäinen viesti, jonka vierailijat näkevät avatessaan chat-widgetin. Jätä tyhjäksi käyttääksesi oletusviestiä.',
             'welcome_message_placeholder' => 'Hei! Kiitos yhteydenotosta. Miten voin auttaa tänään?',
+            'admin_name' => 'Ylläpitäjän nimi',
+            'admin_name_help' => 'Chat-widgetissä ylläpitäjän vastauksille näytettävä nimi.',
+            'admin_name_placeholder' => 'Tuki',
             'primary_color' => 'Pääväri',
             'primary_color_help' => 'Chat-widgetin painikkeen ja otsikon pääväri. Valitse brändiäsi vastaava väri.',
             'position' => 'Widgetin sijainti',

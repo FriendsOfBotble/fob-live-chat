@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Mulai chat',
     'type_message' => 'Ketik pesan...',
     'send' => 'Kirim',
+    'default_admin_name' => 'Dukungan',
     'default_welcome_message' => 'Halo! Terima kasih telah menghubungi kami. Bagaimana saya bisa membantu Anda hari ini?',
     'conversation_statuses' => [
         'open' => 'Terbuka',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Pesan sambutan',
             'welcome_message_help' => 'Pesan pertama yang dilihat pengunjung saat membuka widget chat. Biarkan kosong untuk menggunakan pesan default.',
             'welcome_message_placeholder' => 'Halo! Terima kasih telah menghubungi kami. Bagaimana saya bisa membantu Anda hari ini?',
+            'admin_name' => 'Nama Admin',
+            'admin_name_help' => 'Nama yang ditampilkan untuk balasan admin di widget chat.',
+            'admin_name_placeholder' => 'Dukungan',
             'primary_color' => 'Warna utama',
             'primary_color_help' => 'Warna utama untuk tombol dan header widget chat. Pilih warna yang sesuai dengan merek Anda.',
             'position' => 'Posisi widget',

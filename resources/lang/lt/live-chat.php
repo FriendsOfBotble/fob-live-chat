@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Pradėti pokalbį',
     'type_message' => 'Įveskite žinutę...',
     'send' => 'Siųsti',
+    'default_admin_name' => 'Palaikymas',
     'default_welcome_message' => 'Sveiki! Ačiū, kad susisiekėte. Kaip galiu jums padėti šiandien?',
     'conversation_statuses' => [
         'open' => 'Atidarytas',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Sveikinimo žinutė',
             'welcome_message_help' => 'Pirmoji žinutė, kurią lankytojai mato atidarę pokalbio valdiklį. Palikite tuščią, jei norite naudoti numatytąją žinutę.',
             'welcome_message_placeholder' => 'Sveiki! Ačiū, kad susisiekėte. Kaip galiu jums padėti šiandien?',
+            'admin_name' => 'Administratoriaus vardas',
+            'admin_name_help' => 'Pokalbių valdiklyje rodomas administratoriaus atsakymų vardas.',
+            'admin_name_placeholder' => 'Palaikymas',
             'primary_color' => 'Pagrindinė spalva',
             'primary_color_help' => 'Pagrindinė pokalbio valdiklio mygtuko ir antraštės spalva. Pasirinkite spalvą, atitinkančią jūsų prekės ženklą.',
             'position' => 'Valdiklio padėtis',

@@ -43,6 +43,7 @@ return [
     'start_chat' => 'Iniciar chat',
     'type_message' => 'Digite uma mensagem...',
     'send' => 'Enviar',
+    'default_admin_name' => 'Suporte',
     'default_welcome_message' => 'Olá! Obrigado por entrar em contato. Como posso ajudar você hoje?',
     'conversation_statuses' => [
         'open' => 'Aberta',
@@ -60,6 +61,9 @@ return [
             'welcome_message' => 'Mensagem de boas-vindas',
             'welcome_message_help' => 'A primeira mensagem que os visitantes veem ao abrir o widget de chat. Deixe em branco para usar a mensagem padrão.',
             'welcome_message_placeholder' => 'Olá! Obrigado por entrar em contato. Como posso ajudar você hoje?',
+            'admin_name' => 'Nome do administrador',
+            'admin_name_help' => 'O nome exibido para respostas do administrador no widget de chat.',
+            'admin_name_placeholder' => 'Suporte',
             'primary_color' => 'Cor principal',
             'primary_color_help' => 'A cor principal do botão e do cabeçalho do widget de chat. Escolha uma cor que combine com sua marca.',
             'position' => 'Posição do widget',

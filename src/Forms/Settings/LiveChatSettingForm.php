@@ -60,6 +60,16 @@ class LiveChatSettingForm extends SettingForm
                     ->toArray()
             )
             ->add(
+                'fob_live_chat_admin_name',
+                TextField::class,
+                TextFieldOption::make()
+                    ->label(trans('plugins/fob-live-chat::live-chat.settings.form.admin_name'))
+                    ->helperText(trans('plugins/fob-live-chat::live-chat.settings.form.admin_name_help'))
+                    ->placeholder(trans('plugins/fob-live-chat::live-chat.settings.form.admin_name_placeholder'))
+                    ->value(setting('fob_live_chat_admin_name', ''))
+                    ->toArray()
+            )
+            ->add(
                 'fob_live_chat_primary_color',
                 ColorField::class,
                 ColorFieldOption::make()

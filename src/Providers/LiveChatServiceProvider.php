@@ -33,8 +33,6 @@ class LiveChatServiceProvider extends ServiceProvider
             ->loadAndPublishTranslations()
             ->loadMigrations();
 
-        EmailHandler::addTemplateSettings(FOB_LIVE_CHAT_MODULE_SCREEN_NAME, config('plugins.fob-live-chat.email', []));
-
         Event::listen(NewConversationEvent::class, SendNewConversationEmailListener::class);
 
         DashboardMenu::default()->beforeRetrieving(function (): void {
@@ -61,6 +59,8 @@ class LiveChatServiceProvider extends ServiceProvider
         });
 
         $this->app->booted(function (): void {
+            EmailHandler::addTemplateSettings(FOB_LIVE_CHAT_MODULE_SCREEN_NAME, config('plugins.fob-live-chat.email', []));
+
             add_filter(BASE_FILTER_APPEND_MENU_NAME, function (?string $html, string $menuId) {
                 if ($menuId !== 'cms-plugins-fob-live-chat') {
                     return $html;

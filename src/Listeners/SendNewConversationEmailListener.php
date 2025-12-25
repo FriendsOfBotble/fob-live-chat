@@ -6,6 +6,8 @@ use Botble\Base\Facades\EmailHandler;
 use FriendsOfBotble\LiveChat\Events\NewConversationEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
+use Throwable;
 
 class SendNewConversationEmailListener implements ShouldQueue
 {
@@ -25,16 +27,20 @@ class SendNewConversationEmailListener implements ShouldQueue
 
         $conversationUrl = route('fob-live-chat.conversations.show', $conversation->id);
 
-        EmailHandler::setModule(FOB_LIVE_CHAT_MODULE_SCREEN_NAME)
-            ->setVariableValues([
-                'visitor_name' => $conversation->visitor_name,
-                'visitor_email' => $conversation->visitor_email ?: '-',
-                'visitor_phone' => $conversation->visitor_phone ?: '-',
-                'visitor_ip' => $conversation->visitor_ip ?: '-',
-                'current_page' => $conversation->current_url ?: '-',
-                'conversation_url' => $conversationUrl,
-            ])
-            ->sendUsingTemplate('new-conversation', $receiverEmails);
+        try {
+            EmailHandler::setModule(FOB_LIVE_CHAT_MODULE_SCREEN_NAME)
+                ->setVariableValues([
+                    'visitor_name' => $conversation->visitor_name,
+                    'visitor_email' => $conversation->visitor_email ?: '-',
+                    'visitor_phone' => $conversation->visitor_phone ?: '-',
+                    'visitor_ip' => $conversation->visitor_ip ?: '-',
+                    'current_page' => $conversation->current_url ?: '-',
+                    'conversation_url' => $conversationUrl,
+                ])
+                ->sendUsingTemplate('new-conversation', $receiverEmails);
+        } catch (Throwable $e) {
+            Log::error('FOB Live Chat: Failed to send email notification - ' . $e->getMessage());
+        }
     }
 
     protected function getReceiverEmails(): string|array|null

@@ -4,17 +4,21 @@ namespace FriendsOfBotble\LiveChat\Forms\Settings;
 
 use Botble\Base\Facades\BaseHelper;
 use Botble\Base\Forms\FieldOptions\ColorFieldOption;
+use Botble\Base\Forms\FieldOptions\MediaImageFieldOption;
 use Botble\Base\Forms\FieldOptions\MultiChecklistFieldOption;
 use Botble\Base\Forms\FieldOptions\NumberFieldOption;
 use Botble\Base\Forms\FieldOptions\OnOffFieldOption;
+use Botble\Base\Forms\FieldOptions\RadioFieldOption;
 use Botble\Base\Forms\FieldOptions\SelectFieldOption;
 use Botble\Base\Forms\FieldOptions\TextareaFieldOption;
 use Botble\Base\Forms\FieldOptions\TextFieldOption;
 use Botble\Base\Forms\Fields\ColorField;
 use Botble\Base\Forms\Fields\HtmlField;
+use Botble\Base\Forms\Fields\MediaImageField;
 use Botble\Base\Forms\Fields\MultiCheckListField;
 use Botble\Base\Forms\Fields\NumberField;
 use Botble\Base\Forms\Fields\OnOffCheckboxField;
+use Botble\Base\Forms\Fields\RadioField;
 use Botble\Base\Forms\Fields\SelectField;
 use Botble\Base\Forms\Fields\TextareaField;
 use Botble\Base\Forms\Fields\TextField;
@@ -50,6 +54,73 @@ class LiveChatSettingForm extends SettingForm
                     ->helperText(trans('plugins/fob-live-chat::live-chat.settings.form.widget_title_help'))
                     ->placeholder(trans('plugins/fob-live-chat::live-chat.settings.form.widget_title_placeholder'))
                     ->value(setting('fob_live_chat_widget_title', trans('plugins/fob-live-chat::live-chat.chat_title')))
+                    ->toArray()
+            )
+            ->add(
+                'fob_live_chat_is_online',
+                SelectField::class,
+                SelectFieldOption::make()
+                    ->label(trans('plugins/fob-live-chat::live-chat.settings.form.online_status'))
+                    ->choices([
+                        '1' => trans('plugins/fob-live-chat::live-chat.online'),
+                        '0' => trans('plugins/fob-live-chat::live-chat.offline'),
+                    ])
+                    ->selected(setting('fob_live_chat_is_online', '1'))
+                    ->toArray()
+            )
+            ->add(
+                'fob_live_chat_working_hours_enabled',
+                OnOffCheckboxField::class,
+                OnOffFieldOption::make()
+                    ->label(trans('plugins/fob-live-chat::live-chat.settings.form.working_hours_enabled'))
+                    ->helperText(trans('plugins/fob-live-chat::live-chat.settings.form.working_hours_enabled_help'))
+                    ->value($workingHoursEnabled = LiveChatHelper::isWorkingHoursEnabled())
+                    ->toArray()
+            )
+            ->addOpenCollapsible('fob_live_chat_working_hours_enabled', '1', $workingHoursEnabled)
+            ->add(
+                'fob_live_chat_working_hours_start',
+                TextField::class,
+                TextFieldOption::make()
+                    ->label(trans('plugins/fob-live-chat::live-chat.settings.form.working_hours_start'))
+                    ->value(LiveChatHelper::getWorkingHoursStart())
+                    ->attributes(['type' => 'time'])
+                    ->toArray()
+            )
+            ->add(
+                'fob_live_chat_working_hours_end',
+                TextField::class,
+                TextFieldOption::make()
+                    ->label(trans('plugins/fob-live-chat::live-chat.settings.form.working_hours_end'))
+                    ->value(LiveChatHelper::getWorkingHoursEnd())
+                    ->attributes(['type' => 'time'])
+                    ->toArray()
+            )
+            ->add(
+                'fob_live_chat_working_days[]',
+                MultiCheckListField::class,
+                MultiChecklistFieldOption::make()
+                    ->label(trans('plugins/fob-live-chat::live-chat.settings.form.working_days'))
+                    ->choices([
+                        '1' => trans('plugins/fob-live-chat::live-chat.days.monday'),
+                        '2' => trans('plugins/fob-live-chat::live-chat.days.tuesday'),
+                        '3' => trans('plugins/fob-live-chat::live-chat.days.wednesday'),
+                        '4' => trans('plugins/fob-live-chat::live-chat.days.thursday'),
+                        '5' => trans('plugins/fob-live-chat::live-chat.days.friday'),
+                        '6' => trans('plugins/fob-live-chat::live-chat.days.saturday'),
+                        '7' => trans('plugins/fob-live-chat::live-chat.days.sunday'),
+                    ])
+                    ->selected(LiveChatHelper::getWorkingDays())
+                    ->toArray()
+            )
+            ->addCloseCollapsible('fob_live_chat_working_hours_enabled', '1')
+            ->add(
+                'fob_live_chat_avatar_image',
+                MediaImageField::class,
+                MediaImageFieldOption::make()
+                    ->label(trans('plugins/fob-live-chat::live-chat.settings.form.avatar_image'))
+                    ->helperText(trans('plugins/fob-live-chat::live-chat.settings.form.avatar_image_help'))
+                    ->value(LiveChatHelper::getAvatarImage())
                     ->toArray()
             )
             ->add(
@@ -103,16 +174,58 @@ class LiveChatSettingForm extends SettingForm
                     ->toArray()
             )
             ->add(
+                'fob_live_chat_primary_hover_color',
+                ColorField::class,
+                ColorFieldOption::make()
+                    ->label(trans('plugins/fob-live-chat::live-chat.settings.form.primary_hover_color'))
+                    ->helperText(trans('plugins/fob-live-chat::live-chat.settings.form.primary_hover_color_help'))
+                    ->value(LiveChatHelper::getPrimaryHoverColor())
+                    ->toArray()
+            )
+            ->add(
                 'fob_live_chat_position',
                 SelectField::class,
                 SelectFieldOption::make()
                     ->label(trans('plugins/fob-live-chat::live-chat.settings.form.position'))
                     ->helperText(trans('plugins/fob-live-chat::live-chat.settings.form.position_help'))
                     ->choices([
-                        'right' => trans('plugins/fob-live-chat::live-chat.settings.form.position_right'),
-                        'left' => trans('plugins/fob-live-chat::live-chat.settings.form.position_left'),
+                        'bottom_right' => trans('plugins/fob-live-chat::live-chat.settings.form.position_bottom_right'),
+                        'bottom_left' => trans('plugins/fob-live-chat::live-chat.settings.form.position_bottom_left'),
+                        'center_right' => trans('plugins/fob-live-chat::live-chat.settings.form.position_center_right'),
+                        'center_left' => trans('plugins/fob-live-chat::live-chat.settings.form.position_center_left'),
                     ])
                     ->selected(LiveChatHelper::getPosition())
+                    ->toArray()
+            )
+            ->add(
+                'fob_live_chat_offset_x',
+                NumberField::class,
+                NumberFieldOption::make()
+                    ->label(trans('plugins/fob-live-chat::live-chat.settings.form.offset_x'))
+                    ->helperText(trans('plugins/fob-live-chat::live-chat.settings.form.offset_x_help'))
+                    ->value(LiveChatHelper::getOffsetX())
+                    ->toArray()
+            )
+            ->add(
+                'fob_live_chat_offset_y',
+                NumberField::class,
+                NumberFieldOption::make()
+                    ->label(trans('plugins/fob-live-chat::live-chat.settings.form.offset_y'))
+                    ->helperText(trans('plugins/fob-live-chat::live-chat.settings.form.offset_y_help'))
+                    ->value(LiveChatHelper::getOffsetY())
+                    ->toArray()
+            )
+            ->add(
+                'fob_live_chat_display_on_mobile',
+                RadioField::class,
+                RadioFieldOption::make()
+                    ->choices([
+                        'always' => trans('plugins/fob-live-chat::live-chat.settings.form.display_on_mobile_always'),
+                        'hide' => trans('plugins/fob-live-chat::live-chat.settings.form.display_on_mobile_hide'),
+                    ])
+                    ->selected(LiveChatHelper::getDisplayOnMobile())
+                    ->label(trans('plugins/fob-live-chat::live-chat.settings.form.display_on_mobile'))
+                    ->helperText(trans('plugins/fob-live-chat::live-chat.settings.form.display_on_mobile_help'))
                     ->toArray()
             )
             ->add(

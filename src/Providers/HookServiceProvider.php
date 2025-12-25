@@ -30,7 +30,7 @@ class HookServiceProvider extends ServiceProvider
                 asset('vendor/core/plugins/fob-live-chat/css/live-chat.css'),
                 [],
                 [],
-                '1.0.0'
+                '1.0.2'
             );
 
         Theme::asset()
@@ -41,7 +41,7 @@ class HookServiceProvider extends ServiceProvider
                 asset('vendor/core/plugins/fob-live-chat/js/live-chat.js'),
                 ['jquery'],
                 [],
-                '1.0.0'
+                '1.0.2'
             );
 
         return $html . view('plugins/fob-live-chat::widget')->render();

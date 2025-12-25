@@ -5,7 +5,15 @@
         'sendUrl' => route('fob-live-chat.public.send'),
         'pollInterval' => FriendsOfBotble\LiveChat\Support\LiveChatHelper::getPollInterval(),
         'position' => FriendsOfBotble\LiveChat\Support\LiveChatHelper::getPosition(),
+        'offsetX' => FriendsOfBotble\LiveChat\Support\LiveChatHelper::getOffsetX(),
+        'offsetY' => FriendsOfBotble\LiveChat\Support\LiveChatHelper::getOffsetY(),
+        'hiddenOnMobile' => FriendsOfBotble\LiveChat\Support\LiveChatHelper::isHiddenOnMobile(),
         'primaryColor' => FriendsOfBotble\LiveChat\Support\LiveChatHelper::getPrimaryColor(),
+        'primaryHoverColor' => FriendsOfBotble\LiveChat\Support\LiveChatHelper::getPrimaryHoverColor(),
+        'widgetTitle' => FriendsOfBotble\LiveChat\Support\LiveChatHelper::getWidgetTitle(),
+        'statusText' => FriendsOfBotble\LiveChat\Support\LiveChatHelper::getCurrentStatusText(),
+        'statusColor' => FriendsOfBotble\LiveChat\Support\LiveChatHelper::getCurrentStatusColor(),
+        'avatarImage' => FriendsOfBotble\LiveChat\Support\LiveChatHelper::getAvatarImage(),
         'csrfToken' => csrf_token(),
         'welcomeMessage' => FriendsOfBotble\LiveChat\Support\LiveChatHelper::getWelcomeMessage(),
         'emailEnabled' => FriendsOfBotble\LiveChat\Support\LiveChatHelper::isEmailEnabled(),
@@ -18,13 +26,7 @@
 {{-- Embed CSS directly --}}
 <link rel="stylesheet" href="{{ asset('vendor/core/plugins/fob-live-chat/css/live-chat.css') }}?v=1.0.1">
 
-<style>
-    :root {
-        --fob-primary: {{ $config['primaryColor'] }};
-    }
-</style>
-
-<div id="fob-live-chat" class="fob-live-chat fob-position-{{ $config['position'] }}" data-config='@json($config)'>
+<div id="fob-live-chat" class="fob-live-chat fob-position-{{ $config['position'] }}{{ $config['hiddenOnMobile'] ? ' fob-hidden-on-mobile' : '' }}" data-config='@json($config)' style="--fob-primary: {{ $config['primaryColor'] }}; --fob-primary-hover: {{ $config['primaryHoverColor'] }}; --fob-status-color: {{ $config['statusColor'] }}; --fob-offset-x: {{ $config['offsetX'] }}px; --fob-offset-y: {{ $config['offsetY'] }}px;">
 
     {{-- Chat Button --}}
     <button type="button" class="fob-chat-button" aria-label="{{ trans('plugins/fob-live-chat::live-chat.open_chat') }}">
@@ -44,14 +46,18 @@
         <div class="fob-chat-header">
             <div class="fob-chat-header-info">
                 <div class="fob-chat-avatar">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
+                    @if($config['avatarImage'])
+                        <img src="{{ RvMedia::getImageUrl($config['avatarImage']) }}" alt="{{ $config['widgetTitle'] }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                    @else
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    @endif
                 </div>
                 <div class="fob-chat-header-text">
-                    <span class="fob-chat-title">{{ trans('plugins/fob-live-chat::live-chat.chat_title') }}</span>
-                    <span class="fob-chat-status">{{ trans('plugins/fob-live-chat::live-chat.online') }}</span>
+                    <span class="fob-chat-title">{{ $config['widgetTitle'] }}</span>
+                    <span class="fob-chat-status">{{ $config['statusText'] }}</span>
                 </div>
             </div>
             <button type="button" class="fob-chat-close" aria-label="{{ trans('plugins/fob-live-chat::live-chat.close') }}">

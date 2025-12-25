@@ -17,6 +17,8 @@
     --fob-radius: 16px;
     --fob-radius-sm: 8px;
     --fob-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --fob-offset-x: 20px;
+    --fob-offset-y: 20px;
 
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     font-size: 14px;
@@ -27,21 +29,118 @@
     }
 }
 
-// Position variants
-.fob-position-right {
-    .fob-chat-button,
-    .fob-chat-window {
-        right: 24px;
+// Position variants - Bottom positions
+.fob-position-bottom_right {
+    .fob-chat-button {
+        right: var(--fob-offset-x);
+        bottom: var(--fob-offset-y);
         left: auto;
+        top: auto;
+    }
+
+    .fob-chat-window {
+        right: var(--fob-offset-x);
+        bottom: calc(var(--fob-offset-y) + 76px);
+        left: auto;
+        top: auto;
+        transform-origin: bottom right;
     }
 }
 
-.fob-position-left {
-    .fob-chat-button,
-    .fob-chat-window {
-        left: 24px;
+.fob-position-bottom_left {
+    .fob-chat-button {
+        left: var(--fob-offset-x);
+        bottom: var(--fob-offset-y);
         right: auto;
+        top: auto;
     }
+
+    .fob-chat-window {
+        left: var(--fob-offset-x);
+        bottom: calc(var(--fob-offset-y) + 76px);
+        right: auto;
+        top: auto;
+        transform-origin: bottom left;
+    }
+}
+
+// Position variants - Center positions
+.fob-position-center_right {
+    .fob-chat-button {
+        right: var(--fob-offset-x);
+        top: 50%;
+        transform: translateY(-50%);
+        left: auto;
+        bottom: auto;
+
+        &:hover {
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        &:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+    }
+
+    .fob-chat-window {
+        right: var(--fob-offset-x);
+        top: 50%;
+        transform: translateY(-50%);
+        left: auto;
+        bottom: auto;
+        transform-origin: center right;
+
+        &[data-status="open"] {
+            transform: translateY(-50%) scale(1);
+        }
+    }
+}
+
+.fob-position-center_left {
+    .fob-chat-button {
+        left: var(--fob-offset-x);
+        top: 50%;
+        transform: translateY(-50%);
+        right: auto;
+        bottom: auto;
+
+        &:hover {
+            transform: translateY(-50%) scale(1.08);
+        }
+
+        &:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+    }
+
+    .fob-chat-window {
+        left: var(--fob-offset-x);
+        top: 50%;
+        transform: translateY(-50%);
+        right: auto;
+        bottom: auto;
+        transform-origin: center left;
+
+        &[data-status="open"] {
+            transform: translateY(-50%) scale(1);
+        }
+    }
+}
+
+// Hidden on mobile
+.fob-hidden-on-mobile {
+    @media (max-width: 480px) {
+        display: none !important;
+    }
+}
+
+// Legacy position support (for backwards compatibility)
+.fob-position-right {
+    @extend .fob-position-bottom_right;
+}
+
+.fob-position-left {
+    @extend .fob-position-bottom_left;
 }
 
 // Chat Button
@@ -133,10 +232,6 @@
     }
 }
 
-.fob-position-left .fob-chat-window {
-    transform-origin: bottom left;
-}
-
 // Header
 .fob-chat-header {
     display: flex;
@@ -188,7 +283,7 @@
         display: inline-block;
         width: 8px;
         height: 8px;
-        background: #22c55e;
+        background: var(--fob-status-color, #22c55e);
         border-radius: 50%;
         margin-right: 6px;
         vertical-align: middle;
@@ -498,25 +593,54 @@
 // Mobile Responsive
 @media (max-width: 480px) {
     .fob-chat-button {
-        bottom: 16px;
         width: 56px;
         height: 56px;
     }
 
+    // Bottom positions on mobile
+    .fob-position-bottom_right .fob-chat-button,
+    .fob-position-bottom_left .fob-chat-button,
     .fob-position-right .fob-chat-button,
     .fob-position-left .fob-chat-button {
         right: 16px;
+        bottom: 16px;
         left: auto;
+        top: auto;
+    }
+
+    // Center positions on mobile - move to bottom
+    .fob-position-center_right .fob-chat-button,
+    .fob-position-center_left .fob-chat-button {
+        right: 16px;
+        bottom: 16px;
+        left: auto;
+        top: auto;
+        transform: none;
+
+        &:hover,
+        &:active {
+            transform: scale(1.08);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
     }
 
     .fob-chat-window {
         right: 12px !important;
         left: 12px !important;
-        bottom: 88px;
+        bottom: 88px !important;
+        top: auto !important;
         width: calc(100vw - 24px);
         max-width: none;
         height: calc(100vh - 120px);
         max-height: calc(100vh - 120px);
+        transform: translateY(20px) scale(0.95) !important;
+
+        &[data-status="open"] {
+            transform: translateY(0) scale(1) !important;
+        }
     }
 
     .fob-chat-header {

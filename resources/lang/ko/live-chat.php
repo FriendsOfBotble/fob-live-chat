@@ -32,6 +32,8 @@ return [
     'total_messages' => '총 메시지',
     'just_now' => '방금',
     'test_sound' => '소리 테스트를 위해 클릭',
+    'no_messages_yet' => '아직 메시지가 없습니다',
+    'start_conversation_hint' => '대화를 시작하려면 메시지를 보내세요',
     'notifications_enabled' => '브라우저 알림이 활성화되었습니다!',
     'enable_notifications' => '브라우저 알림 활성화',
     'new_conversation' => '새 대화',

@@ -32,6 +32,8 @@ return [
     'total_messages' => 'Jumlah mesej',
     'just_now' => 'Baru sahaja',
     'test_sound' => 'Klik untuk menguji bunyi',
+    'no_messages_yet' => 'Belum ada mesej',
+    'start_conversation_hint' => 'Hantar mesej untuk memulakan perbualan',
     'notifications_enabled' => 'Pemberitahuan pelayar diaktifkan!',
     'enable_notifications' => 'Dayakan pemberitahuan pelayar',
     'new_conversation' => 'Perbualan baru',

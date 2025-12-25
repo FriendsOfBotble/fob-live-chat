@@ -32,6 +32,8 @@ return [
     'total_messages' => 'סך כל ההודעות',
     'just_now' => 'זה עתה',
     'test_sound' => 'לחץ לבדיקת צליל',
+    'no_messages_yet' => 'אין הודעות עדיין',
+    'start_conversation_hint' => 'שלח הודעה כדי להתחיל את השיחה',
     'notifications_enabled' => 'התראות הדפדפן הופעלו!',
     'enable_notifications' => 'הפעל התראות דפדפן',
     'new_conversation' => 'שיחה חדשה',

@@ -32,6 +32,8 @@ return [
     'total_messages' => 'ข้อความทั้งหมด',
     'just_now' => 'เมื่อสักครู่',
     'test_sound' => 'คลิกเพื่อทดสอบเสียง',
+    'no_messages_yet' => 'ยังไม่มีข้อความ',
+    'start_conversation_hint' => 'ส่งข้อความเพื่อเริ่มการสนทนา',
     'notifications_enabled' => 'เปิดใช้งานการแจ้งเตือนของเบราว์เซอร์แล้ว!',
     'enable_notifications' => 'เปิดใช้งานการแจ้งเตือนของเบราว์เซอร์',
     'new_conversation' => 'การสนทนาใหม่',

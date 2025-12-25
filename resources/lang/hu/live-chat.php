@@ -32,6 +32,8 @@ return [
     'total_messages' => 'Összes üzenet',
     'just_now' => 'Épp most',
     'test_sound' => 'Kattintson a hang teszteléséhez',
+    'no_messages_yet' => 'Még nincsenek üzenetek',
+    'start_conversation_hint' => 'Küldjön üzenetet a beszélgetés megkezdéséhez',
     'notifications_enabled' => 'Böngésző értesítések engedélyezve!',
     'enable_notifications' => 'Böngésző értesítések engedélyezése',
     'new_conversation' => 'Új beszélgetés',

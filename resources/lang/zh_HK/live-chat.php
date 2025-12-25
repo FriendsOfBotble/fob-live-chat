@@ -32,6 +32,8 @@ return [
     'total_messages' => '總訊息數',
     'just_now' => '剛剛',
     'test_sound' => '點擊測試聲音',
+    'no_messages_yet' => '暫無訊息',
+    'start_conversation_hint' => '發送訊息以開始對話',
     'notifications_enabled' => '瀏覽器通知已啟用！',
     'enable_notifications' => '啟用瀏覽器通知',
     'new_conversation' => '新對話',

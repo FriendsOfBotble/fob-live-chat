@@ -32,6 +32,8 @@ return [
     'total_messages' => 'Celkem zpráv',
     'just_now' => 'Právě teď',
     'test_sound' => 'Klikněte pro test zvuku',
+    'no_messages_yet' => 'Zatím žádné zprávy',
+    'start_conversation_hint' => 'Odešlete zprávu pro zahájení konverzace',
     'notifications_enabled' => 'Oznámení prohlížeče povolena!',
     'enable_notifications' => 'Povolit oznámení prohlížeče',
     'new_conversation' => 'Nová konverzace',

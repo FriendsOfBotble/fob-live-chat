@@ -32,6 +32,8 @@ return [
     'total_messages' => 'Samlet antal beskeder',
     'just_now' => 'Lige nu',
     'test_sound' => 'Klik for at teste lyd',
+    'no_messages_yet' => 'Ingen beskeder endnu',
+    'start_conversation_hint' => 'Send en besked for at starte samtalen',
     'notifications_enabled' => 'Browsernotifikationer aktiveret!',
     'enable_notifications' => 'Aktiver browsernotifikationer',
     'new_conversation' => 'Ny samtale',

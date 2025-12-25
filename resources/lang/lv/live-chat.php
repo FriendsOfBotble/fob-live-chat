@@ -32,6 +32,8 @@ return [
     'total_messages' => 'Kopā ziņojumu',
     'just_now' => 'Tikko',
     'test_sound' => 'Noklikšķiniet, lai pārbaudītu skaņu',
+    'no_messages_yet' => 'Vēl nav ziņu',
+    'start_conversation_hint' => 'Nosūtiet ziņojumu, lai sāktu sarunu',
     'notifications_enabled' => 'Pārlūka paziņojumi iespējoti!',
     'enable_notifications' => 'Iespējot pārlūka paziņojumus',
     'new_conversation' => 'Jauna saruna',

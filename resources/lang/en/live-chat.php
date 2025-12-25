@@ -37,6 +37,8 @@ return [
     'enable_notifications' => 'Enable browser notifications',
     'notifications_enabled' => 'Browser notifications enabled!',
     'test_sound' => 'Click to test sound',
+    'no_messages_yet' => 'No messages yet',
+    'start_conversation_hint' => 'Send a message to start the conversation',
     'open_chat' => 'Open chat',
     'close' => 'Close',
     'chat_title' => 'Live Chat',

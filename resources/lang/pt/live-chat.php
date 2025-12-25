@@ -32,6 +32,8 @@ return [
     'total_messages' => 'Total de mensagens',
     'just_now' => 'Agora mesmo',
     'test_sound' => 'Clique para testar o som',
+    'no_messages_yet' => 'Sem mensagens ainda',
+    'start_conversation_hint' => 'Envie uma mensagem para iniciar a conversa',
     'notifications_enabled' => 'Notificações do navegador ativadas!',
     'enable_notifications' => 'Ativar notificações do navegador',
     'new_conversation' => 'Nova conversa',

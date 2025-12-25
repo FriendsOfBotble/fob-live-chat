@@ -48,7 +48,7 @@
                                 <span class="fob-conversation-time">{{ $conv->last_message_at ? $conv->last_message_at->diffForHumans(short: true) : '' }}</span>
                             </div>
                             <div class="fob-conversation-body">
-                                <span class="fob-conversation-preview">{{ Str::limit($conv->last_message, 50) }}</span>
+                                <span class="fob-conversation-preview {{ !$conv->last_message ? 'text-muted fst-italic' : '' }}">{{ $conv->last_message ? Str::limit($conv->last_message, 50) : trans('plugins/fob-live-chat::live-chat.no_messages_yet') }}</span>
                                 @if($conv->unread_count > 0)
                                     <span class="fob-unread-badge">{{ $conv->unread_count > 9 ? '9+' : $conv->unread_count }}</span>
                                 @else
@@ -242,6 +242,10 @@
             }
 
             function addNewConversation(conv) {
+                const noMessagesText = '{{ trans('plugins/fob-live-chat::live-chat.no_messages_yet') }}';
+                const previewText = conv.last_message ? escapeHtml(conv.last_message.substring(0, 50)) : noMessagesText;
+                const previewClass = conv.last_message ? '' : 'text-muted fst-italic';
+
                 const html = `
                     <div class="fob-conversation-item has-unread" data-id="${conv.id}" data-status="${conv.status}">
                         <div class="fob-conversation-avatar ${conv.status === 'open' ? 'is-online' : ''}">
@@ -253,7 +257,7 @@
                                 <span class="fob-conversation-time">${conv.last_message_at || ''}</span>
                             </div>
                             <div class="fob-conversation-body">
-                                <span class="fob-conversation-preview">${escapeHtml((conv.last_message || '').substring(0, 50))}</span>
+                                <span class="fob-conversation-preview ${previewClass}">${previewText}</span>
                                 <span class="fob-unread-badge">${conv.unread_count > 9 ? '9+' : conv.unread_count}</span>
                             </div>
                         </div>

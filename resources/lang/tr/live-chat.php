@@ -32,6 +32,8 @@ return [
     'total_messages' => 'Toplam mesaj',
     'just_now' => 'Az önce',
     'test_sound' => 'Sesi test etmek için tıklayın',
+    'no_messages_yet' => 'Henüz mesaj yok',
+    'start_conversation_hint' => 'Sohbeti başlatmak için bir mesaj gönderin',
     'notifications_enabled' => 'Tarayıcı bildirimleri etkinleştirildi!',
     'enable_notifications' => 'Tarayıcı bildirimlerini etkinleştir',
     'new_conversation' => 'Yeni konuşma',

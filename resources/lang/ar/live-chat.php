@@ -32,6 +32,8 @@ return [
     'total_messages' => 'إجمالي الرسائل',
     'just_now' => 'الآن',
     'test_sound' => 'انقر لاختبار الصوت',
+    'no_messages_yet' => 'لا توجد رسائل بعد',
+    'start_conversation_hint' => 'أرسل رسالة لبدء المحادثة',
     'notifications_enabled' => 'تم تفعيل إشعارات المتصفح!',
     'enable_notifications' => 'تفعيل إشعارات المتصفح',
     'new_conversation' => 'محادثة جديدة',

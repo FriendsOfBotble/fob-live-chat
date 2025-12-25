@@ -32,6 +32,8 @@ return [
     'total_messages' => '総メッセージ数',
     'just_now' => 'たった今',
     'test_sound' => 'クリックしてサウンドをテスト',
+    'no_messages_yet' => 'まだメッセージはありません',
+    'start_conversation_hint' => 'メッセージを送信して会話を開始してください',
     'notifications_enabled' => 'ブラウザ通知が有効になりました！',
     'enable_notifications' => 'ブラウザ通知を有効にする',
     'new_conversation' => '新しい会話',

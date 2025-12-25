@@ -32,6 +32,8 @@ return [
     'total_messages' => 'Kabuuang mensahe',
     'just_now' => 'Ngayon lang',
     'test_sound' => 'I-click para subukan ang tunog',
+    'no_messages_yet' => 'Wala pang mga mensahe',
+    'start_conversation_hint' => 'Magpadala ng mensahe upang simulan ang pag-uusap',
     'notifications_enabled' => 'Na-enable ang mga notification sa browser!',
     'enable_notifications' => 'I-enable ang mga notification sa browser',
     'new_conversation' => 'Bagong pag-uusap',

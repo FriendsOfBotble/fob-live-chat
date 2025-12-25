@@ -32,6 +32,8 @@ return [
     'total_messages' => 'Ukupno poruka',
     'just_now' => 'Upravo sada',
     'test_sound' => 'Kliknite za testiranje zvuka',
+    'no_messages_yet' => 'Još nema poruka',
+    'start_conversation_hint' => 'Pošaljite poruku za početak razgovora',
     'notifications_enabled' => 'Obavijesti preglednika omogućene!',
     'enable_notifications' => 'Omogući obavijesti preglednika',
     'new_conversation' => 'Novi razgovor',

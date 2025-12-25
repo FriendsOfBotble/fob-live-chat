@@ -32,6 +32,8 @@ return [
     'total_messages' => 'Totalt antall meldinger',
     'just_now' => 'Akkurat nå',
     'test_sound' => 'Klikk for å teste lyd',
+    'no_messages_yet' => 'Ingen meldinger ennå',
+    'start_conversation_hint' => 'Send en melding for å starte samtalen',
     'notifications_enabled' => 'Nettleservarsler aktivert!',
     'enable_notifications' => 'Aktiver nettleservarsler',
     'new_conversation' => 'Ny samtale',

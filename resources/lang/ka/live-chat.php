@@ -32,6 +32,8 @@ return [
     'total_messages' => 'შეტყობინებების რაოდენობა',
     'just_now' => 'ახლახან',
     'test_sound' => 'დააწკაპუნეთ ხმის შესამოწმებლად',
+    'no_messages_yet' => 'ჯერ არ არის შეტყობინებები',
+    'start_conversation_hint' => 'გაგზავნეთ შეტყობინება საუბრის დასაწყებად',
     'notifications_enabled' => 'ბრაუზერის შეტყობინებები ჩართულია!',
     'enable_notifications' => 'ბრაუზერის შეტყობინებების ჩართვა',
     'new_conversation' => 'ახალი საუბარი',

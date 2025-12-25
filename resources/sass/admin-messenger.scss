@@ -489,6 +489,48 @@
     }
 }
 
+// Chat Empty Messages State
+.fob-chat-empty-messages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 40px 24px;
+    text-align: center;
+}
+
+.fob-chat-empty-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--bb-bg-surface-secondary, #f4f6f8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+
+    svg {
+        color: var(--bb-secondary, #6c757d);
+        opacity: 0.5;
+    }
+}
+
+.fob-chat-empty-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--bb-body-color, #1e293b);
+    margin: 0 0 6px;
+}
+
+.fob-chat-empty-hint {
+    font-size: 13px;
+    color: var(--bb-secondary, #6c757d);
+    margin: 0;
+    max-width: 250px;
+    line-height: 1.5;
+}
+
 // Message Row
 .fob-message-row {
     display: flex;
@@ -1205,6 +1247,27 @@
     }
 
     .fob-empty-chat-desc {
+        color: var(--fob-dark-text-secondary);
+    }
+
+    // Chat Empty Messages State
+    .fob-chat-empty-messages {
+        background: var(--fob-dark-bg);
+    }
+
+    .fob-chat-empty-icon {
+        background: var(--fob-dark-surface-secondary);
+
+        svg {
+            color: var(--fob-dark-text-secondary);
+        }
+    }
+
+    .fob-chat-empty-text {
+        color: var(--fob-dark-text);
+    }
+
+    .fob-chat-empty-hint {
         color: var(--fob-dark-text-secondary);
     }
 

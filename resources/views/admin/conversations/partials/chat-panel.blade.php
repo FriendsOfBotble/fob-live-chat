@@ -29,31 +29,41 @@
 
 {{-- Messages --}}
 <div class="fob-chat-messages" id="chat-messages">
-    @php
-        $lastDate = null;
-    @endphp
-
-    @foreach($conversation->messages as $message)
+    @if($conversation->messages->isEmpty())
+        <div class="fob-chat-empty-messages">
+            <div class="fob-chat-empty-icon">
+                <x-core::icon name="ti ti-message-dots" style="width: 48px; height: 48px;" />
+            </div>
+            <p class="fob-chat-empty-text">{{ trans('plugins/fob-live-chat::live-chat.no_messages_yet') }}</p>
+            <p class="fob-chat-empty-hint">{{ trans('plugins/fob-live-chat::live-chat.start_conversation_hint') }}</p>
+        </div>
+    @else
         @php
-            $messageDate = $message->created_at->format('d/m/Y');
+            $lastDate = null;
         @endphp
 
-        {{-- Date Divider --}}
-        @if($lastDate !== $messageDate)
-            <div class="fob-date-divider">
-                <span>{{ $message->created_at->format('d/m/y') }}</span>
-            </div>
-            @php $lastDate = $messageDate; @endphp
-        @endif
+        @foreach($conversation->messages as $message)
+            @php
+                $messageDate = $message->created_at->format('d/m/Y');
+            @endphp
 
-        {{-- Message --}}
-        <div class="fob-message-row {{ $message->is_from_admin ? 'fob-message-row-admin' : 'fob-message-row-visitor' }}">
-            <div class="fob-message-bubble">
-                <span class="fob-message-text">{{ trim($message->content) }}</span>
+            {{-- Date Divider --}}
+            @if($lastDate !== $messageDate)
+                <div class="fob-date-divider">
+                    <span>{{ $message->created_at->format('d/m/y') }}</span>
+                </div>
+                @php $lastDate = $messageDate; @endphp
+            @endif
+
+            {{-- Message --}}
+            <div class="fob-message-row {{ $message->is_from_admin ? 'fob-message-row-admin' : 'fob-message-row-visitor' }}">
+                <div class="fob-message-bubble">
+                    <span class="fob-message-text">{{ trim($message->content) }}</span>
+                </div>
+                <div class="fob-message-time">{{ $message->created_at->format('H:i') }}</div>
             </div>
-            <div class="fob-message-time">{{ $message->created_at->format('H:i') }}</div>
-        </div>
-    @endforeach
+        @endforeach
+    @endif
 </div>
 
 {{-- Input --}}

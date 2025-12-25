@@ -32,6 +32,8 @@ return [
     'total_messages' => 'Укупно порука',
     'just_now' => 'Малопре',
     'test_sound' => 'Кликните за тестирање звука',
+    'no_messages_yet' => 'Још нема порука',
+    'start_conversation_hint' => 'Пошаљите поруку да започнете разговор',
     'notifications_enabled' => 'Обавештења прегледача омогућена!',
     'enable_notifications' => 'Омогући обавештења прегледача',
     'new_conversation' => 'Нови разговор',

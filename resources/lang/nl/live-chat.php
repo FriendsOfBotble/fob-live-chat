@@ -32,6 +32,8 @@ return [
     'total_messages' => 'Totaal berichten',
     'just_now' => 'Zojuist',
     'test_sound' => 'Klik om geluid te testen',
+    'no_messages_yet' => 'Nog geen berichten',
+    'start_conversation_hint' => 'Stuur een bericht om het gesprek te starten',
     'notifications_enabled' => 'Browsermeldingen ingeschakeld!',
     'enable_notifications' => 'Browsermeldingen inschakelen',
     'new_conversation' => 'Nieuw gesprek',

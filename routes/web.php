@@ -15,6 +15,10 @@ Route::name('fob-live-chat.')->group(function (): void {
                     ->name('index')
                     ->permission('fob-live-chat.conversations.index');
 
+                Route::get('check-updates', [ConversationController::class, 'checkUpdates'])
+                    ->name('check-updates')
+                    ->permission('fob-live-chat.conversations.index');
+
                 Route::get('{id}', [ConversationController::class, 'show'])
                     ->name('show')
                     ->permission('fob-live-chat.conversations.show');

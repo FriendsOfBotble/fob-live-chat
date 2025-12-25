@@ -8,6 +8,12 @@
                 <div class="fob-sidebar-title">
                     <x-core::icon name="ti ti-messages" class="text-primary" style="width: 22px; height: 22px;" />
                     <h4>{{ trans('plugins/fob-live-chat::live-chat.title') }}</h4>
+                    <button type="button" class="btn btn-sm btn-ghost-primary ms-auto" id="enable-notifications-btn" style="display: none;" title="{{ trans('plugins/fob-live-chat::live-chat.enable_notifications') }}">
+                        <x-core::icon name="ti ti-bell" />
+                    </button>
+                    <span class="badge bg-green-lt ms-auto" id="notifications-enabled-badge" style="display: none;">
+                        <x-core::icon name="ti ti-bell-ringing" style="width: 14px; height: 14px;" />
+                    </span>
                 </div>
                 @php
                     $openCount = $conversations->filter(fn($c) => $c->status->getValue() === 'open')->count();
@@ -98,8 +104,282 @@
             const $chatPanel = $('#chat-panel');
             const $infoPanel = $('#info-panel');
             let currentConversationId = @json($selectedId);
-            let lastMessageId = @json($selected?->messages->last()?->id);
+            let lastMessageId = @json($selected?->messages->last()?->id ?? 0);
             let pollInterval = null;
+            let updatePollInterval = null;
+            let notificationPermission = Notification.permission;
+            let originalTitle = document.title;
+            let titleBlinkInterval = null;
+            let totalUnreadCount = 0;
+            let lastKnownUnreads = {};
+            const CHECK_UPDATES_INTERVAL = 5000;
+            const FETCH_MESSAGES_INTERVAL = 3000;
+
+            // Initialize lastKnownUnreads from existing items
+            $conversationsList.find('.fob-conversation-item').each(function() {
+                const id = $(this).data('id');
+                const $badge = $(this).find('.fob-unread-badge');
+                lastKnownUnreads[id] = $badge.length ? parseInt($badge.text()) || 0 : 0;
+            });
+
+            function getKnownConversationIds() {
+                const ids = [];
+                $conversationsList.find('.fob-conversation-item').each(function() {
+                    ids.push($(this).data('id'));
+                });
+                return ids;
+            }
+
+            function updateNotificationUI() {
+                const $enableBtn = $('#enable-notifications-btn');
+                const $enabledBadge = $('#notifications-enabled-badge');
+
+                if (!('Notification' in window)) {
+                    $enableBtn.hide();
+                    $enabledBadge.hide();
+                    return;
+                }
+
+                if (notificationPermission === 'granted') {
+                    $enableBtn.hide();
+                    $enabledBadge.show();
+                } else if (notificationPermission === 'default') {
+                    $enableBtn.show();
+                    $enabledBadge.hide();
+                } else {
+                    $enableBtn.hide();
+                    $enabledBadge.hide();
+                }
+            }
+
+            function requestNotificationPermission() {
+                if ('Notification' in window && notificationPermission === 'default') {
+                    Notification.requestPermission().then(function(permission) {
+                        notificationPermission = permission;
+                        updateNotificationUI();
+                        if (permission === 'granted') {
+                            Botble.showSuccess('{{ trans('plugins/fob-live-chat::live-chat.notifications_enabled') }}');
+                        }
+                    });
+                }
+            }
+
+            $('#enable-notifications-btn').on('click', function() {
+                requestNotificationPermission();
+                playNotificationSound();
+            });
+
+            $('#notifications-enabled-badge').on('click', function() {
+                playNotificationSound();
+            }).css('cursor', 'pointer').attr('title', '{{ trans('plugins/fob-live-chat::live-chat.test_sound') }}');
+
+            function showBrowserNotification(title, body, conversationId) {
+                if (notificationPermission !== 'granted') return;
+                if (document.hasFocus()) return;
+
+                const notification = new Notification(title, {
+                    body: body.substring(0, 100),
+                    icon: '{{ asset('vendor/core/core/base/images/favicon.png') }}',
+                    tag: 'live-chat-' + conversationId,
+                    requireInteraction: false
+                });
+
+                notification.onclick = function() {
+                    window.focus();
+                    if (conversationId) {
+                        loadConversation(conversationId);
+                    }
+                    notification.close();
+                };
+
+                setTimeout(function() {
+                    notification.close();
+                }, 8000);
+            }
+
+            function playNotificationSound() {
+                try {
+                    const audio = new Audio('{{ asset('vendor/core/plugins/fob-live-chat/sounds/notification.mp3') }}');
+                    audio.volume = 0.5;
+                    audio.play().catch(() => {});
+                } catch (e) {}
+            }
+
+            function startTitleBlink(count) {
+                stopTitleBlink();
+                if (count <= 0) return;
+
+                let isOriginal = true;
+                titleBlinkInterval = setInterval(function() {
+                    if (document.hasFocus()) {
+                        stopTitleBlink();
+                        return;
+                    }
+                    document.title = isOriginal ? `(${count}) {{ trans('plugins/fob-live-chat::live-chat.new_message') }}` : originalTitle;
+                    isOriginal = !isOriginal;
+                }, 1000);
+            }
+
+            function stopTitleBlink() {
+                if (titleBlinkInterval) {
+                    clearInterval(titleBlinkInterval);
+                    titleBlinkInterval = null;
+                }
+                document.title = originalTitle;
+            }
+
+            function updateUnreadBadge($item, count) {
+                $item.find('.fob-unread-badge').remove();
+                if (count > 0) {
+                    const badge = count > 9 ? '9+' : count;
+                    $item.find('.fob-conversation-body').append(`<span class="fob-unread-badge">${badge}</span>`);
+                    $item.addClass('has-unread');
+                    $item.find('.fob-status-dot').hide();
+                } else {
+                    $item.removeClass('has-unread');
+                    $item.find('.fob-status-dot').show();
+                }
+            }
+
+            function addNewConversation(conv) {
+                const html = `
+                    <div class="fob-conversation-item has-unread" data-id="${conv.id}" data-status="${conv.status}">
+                        <div class="fob-conversation-avatar ${conv.status === 'open' ? 'is-online' : ''}">
+                            <span class="fob-avatar-text">${escapeHtml(conv.initials)}</span>
+                        </div>
+                        <div class="fob-conversation-content">
+                            <div class="fob-conversation-header">
+                                <span class="fob-conversation-name">${escapeHtml(conv.visitor_name)}</span>
+                                <span class="fob-conversation-time">${conv.last_message_at || ''}</span>
+                            </div>
+                            <div class="fob-conversation-body">
+                                <span class="fob-conversation-preview">${escapeHtml((conv.last_message || '').substring(0, 50))}</span>
+                                <span class="fob-unread-badge">${conv.unread_count > 9 ? '9+' : conv.unread_count}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                const $emptyState = $conversationsList.find('.fob-empty-state');
+                if ($emptyState.length) {
+                    $emptyState.remove();
+                }
+
+                const $newItem = $(html).hide().prependTo($conversationsList).slideDown(200);
+
+                updateFilterCounts();
+            }
+
+            function updateFilterCounts() {
+                const allCount = $conversationsList.find('.fob-conversation-item').length;
+                const openCount = $conversationsList.find('.fob-conversation-item[data-status="open"]').length;
+                const closedCount = $conversationsList.find('.fob-conversation-item[data-status="closed"]').length;
+
+                $('.fob-filter-tab[data-filter="all"] .fob-filter-count').text(allCount);
+                $('.fob-filter-tab[data-filter="open"] .fob-filter-count').text(openCount);
+                $('.fob-filter-tab[data-filter="closed"] .fob-filter-count').text(closedCount);
+            }
+
+            function checkForUpdates() {
+                const knownIds = getKnownConversationIds();
+
+                $.ajax({
+                    url: '{{ route('fob-live-chat.conversations.check-updates') }}',
+                    type: 'GET',
+                    data: {
+                        known_ids: JSON.stringify(knownIds),
+                        current_id: currentConversationId,
+                        after_message_id: lastMessageId
+                    },
+                    dataType: 'json',
+                    success: function(res) {
+                        if (res.error) return;
+
+                        const data = res.data;
+
+                        let hasNewNotification = false;
+
+                        if (data.new_conversations && data.new_conversations.length > 0) {
+                            data.new_conversations.forEach(function(conv) {
+                                addNewConversation(conv);
+                                lastKnownUnreads[conv.id] = conv.unread_count;
+                                showBrowserNotification(
+                                    '{{ trans('plugins/fob-live-chat::live-chat.new_conversation') }}',
+                                    conv.visitor_name + ': ' + (conv.last_message || ''),
+                                    conv.id
+                                );
+                                hasNewNotification = true;
+                            });
+                        }
+
+                        if (data.updates && data.updates.length > 0) {
+                            data.updates.forEach(function(update) {
+                                const $item = $(`.fob-conversation-item[data-id="${update.id}"]`);
+                                if ($item.length) {
+                                    const prevUnread = lastKnownUnreads[update.id] || 0;
+                                    const newUnread = update.unread_count;
+
+                                    updateUnreadBadge($item, newUnread);
+                                    $item.find('.fob-conversation-preview').text((update.last_message || '').substring(0, 50));
+                                    $item.find('.fob-conversation-time').text(update.last_message_at || '');
+
+                                    if (newUnread > prevUnread) {
+                                        hasNewNotification = true;
+                                        if (update.id !== currentConversationId) {
+                                            showBrowserNotification(
+                                                '{{ trans('plugins/fob-live-chat::live-chat.new_message') }}',
+                                                update.last_message || '',
+                                                update.id
+                                            );
+                                        }
+                                    }
+
+                                    lastKnownUnreads[update.id] = newUnread;
+                                }
+                            });
+                        }
+
+                        if (hasNewNotification) {
+                            playNotificationSound();
+                        }
+
+                        if (data.new_messages && data.new_messages.length > 0) {
+                            data.new_messages.forEach(function(msg) {
+                                if (msg.id > lastMessageId) {
+                                    appendMessage(msg);
+                                    lastMessageId = msg.id;
+                                }
+                            });
+                        }
+
+                        if (data.total_unread !== totalUnreadCount) {
+                            totalUnreadCount = data.total_unread;
+                            if (totalUnreadCount > 0 && !document.hasFocus()) {
+                                startTitleBlink(totalUnreadCount);
+                            }
+                        }
+                    }
+                });
+            }
+
+            function startUpdatePolling() {
+                if (updatePollInterval) return;
+                checkForUpdates();
+                updatePollInterval = setInterval(checkForUpdates, CHECK_UPDATES_INTERVAL);
+            }
+
+            function stopUpdatePolling() {
+                if (updatePollInterval) {
+                    clearInterval(updatePollInterval);
+                    updatePollInterval = null;
+                }
+            }
+
+            $(window).on('focus', function() {
+                stopTitleBlink();
+            });
+
+            updateNotificationUI();
 
             // Conversation click
             $conversationsList.on('click', '.fob-conversation-item', function() {
@@ -380,20 +660,7 @@
                 }
             }
 
-            // Poll for new conversations
-            setInterval(function() {
-                $.ajax({
-                    url: '{{ route('fob-live-chat.conversations.index') }}',
-                    type: 'GET',
-                    data: { check_updates: 1 },
-                    dataType: 'json',
-                    success: function(res) {
-                        if (res.unread_count !== undefined) {
-                            // Update badge counts
-                        }
-                    }
-                });
-            }, 30000);
+            startUpdatePolling();
         });
     </script>
 @endpush

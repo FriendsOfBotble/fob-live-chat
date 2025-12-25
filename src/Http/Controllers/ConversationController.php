@@ -139,4 +139,90 @@ class ConversationController extends BaseController
             ->httpResponse()
             ->setData(['messages' => $messages]);
     }
+
+    public function checkUpdates(Request $request)
+    {
+        $lastCheck = $request->input('last_check');
+        $currentConversationId = $request->input('current_id');
+        $knownIds = $request->input('known_ids', []);
+
+        if (is_string($knownIds)) {
+            $knownIds = json_decode($knownIds, true) ?: [];
+        }
+
+        $query = Conversation::query()
+            ->withCount([
+                'messages as unread_count' => function ($query): void {
+                    $query->where('is_from_admin', false)->where('is_read', false);
+                },
+            ])
+            ->addSelect([
+                'last_message' => Message::query()
+                    ->select('content')
+                    ->whereColumn('conversation_id', 'fob_live_chat_conversations.id')
+                    ->latest()
+                    ->limit(1),
+            ])
+            ->latest('last_message_at');
+
+        $conversations = $query->get();
+
+        $updates = [];
+        $newConversations = [];
+        $totalUnread = 0;
+
+        foreach ($conversations as $conv) {
+            $totalUnread += $conv->unread_count;
+
+            if (! in_array($conv->id, $knownIds)) {
+                $newConversations[] = [
+                    'id' => $conv->id,
+                    'visitor_name' => $conv->visitor_name,
+                    'visitor_email' => $conv->visitor_email,
+                    'last_message' => $conv->last_message,
+                    'unread_count' => $conv->unread_count,
+                    'status' => $conv->status->getValue(),
+                    'last_message_at' => $conv->last_message_at?->diffForHumans(short: true),
+                    'initials' => strtoupper(substr($conv->visitor_name, 0, 2)),
+                ];
+            } elseif ($conv->unread_count > 0 && $conv->id !== (int) $currentConversationId) {
+                $updates[] = [
+                    'id' => $conv->id,
+                    'unread_count' => $conv->unread_count,
+                    'last_message' => $conv->last_message,
+                    'last_message_at' => $conv->last_message_at?->diffForHumans(short: true),
+                ];
+            }
+        }
+
+        $newMessagesForCurrent = [];
+        if ($currentConversationId) {
+            $afterId = (int) $request->input('after_message_id', 0);
+            if ($afterId > 0) {
+                $newMessagesForCurrent = Message::query()
+                    ->where('conversation_id', $currentConversationId)
+                    ->where('id', '>', $afterId)
+                    ->where('is_from_admin', false)
+                    ->orderBy('id', 'asc')
+                    ->get()
+                    ->map(fn (Message $msg) => [
+                        'id' => $msg->id,
+                        'content' => $msg->content,
+                        'is_from_admin' => $msg->is_from_admin,
+                        'admin_name' => $msg->admin_name,
+                        'created_at' => $msg->created_at->format('H:i'),
+                    ])
+                    ->toArray();
+            }
+        }
+
+        return $this
+            ->httpResponse()
+            ->setData([
+                'total_unread' => $totalUnread,
+                'new_conversations' => $newConversations,
+                'updates' => $updates,
+                'new_messages' => $newMessagesForCurrent,
+            ]);
+    }
 }

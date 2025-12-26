@@ -310,6 +310,14 @@ class LiveChatSettingForm extends SettingForm
                 ),
             ])
 
+            ->add('webhook_usage_instructions', HtmlField::class, [
+                'html' => sprintf(
+                    '<details class="border rounded p-3 mb-4"><summary class="cursor-pointer text-primary fw-bold">%s</summary><div class="mt-3">%s</div></details>',
+                    trans('plugins/fob-live-chat::live-chat.webhook.usage_instructions_title'),
+                    trans('plugins/fob-live-chat::live-chat.webhook.usage_instructions')
+                ),
+            ])
+
             ->add(
                 'fob_live_chat_enable_webhooks',
                 OnOffCheckboxField::class,

@@ -169,6 +169,38 @@ John',
         'status_code' => 'Kode Status',
         'please_enter_url' => 'Silakan masukkan URL webhook terlebih dahulu',
         'error_occurred' => 'Terjadi kesalahan saat menguji webhook',
+        'usage_instructions_title' => 'Cara Menggunakan Webhook',
+        'usage_instructions' => '<p><strong>Webhook</strong> memungkinkan Anda menerima notifikasi real-time ketika event terjadi di Live Chat. Ketika event dipicu, permintaan HTTP POST dikirim ke URL yang dikonfigurasi dengan data JSON.</p>
+<h6>HTTP Headers</h6>
+<ul>
+<li><code>Content-Type: application/json</code></li>
+<li><code>X-Webhook-Event</code> - Tipe event (misal <code>message.received</code>, <code>conversation.started</code>)</li>
+<li><code>X-Webhook-Timestamp</code> - Timestamp ISO 8601 saat webhook dikirim</li>
+<li><code>X-Webhook-Test: true</code> - Hanya ada untuk webhook test</li>
+</ul>
+<h6>Persyaratan Endpoint</h6>
+<ul>
+<li>Harus menerima permintaan HTTP POST</li>
+<li>Harus merespons dalam 10 detik (batas timeout)</li>
+<li>Harus mengembalikan kode status HTTP 2xx untuk sukses</li>
+<li>Harus dapat diakses publik (HTTPS direkomendasikan)</li>
+</ul>
+<h6>Tutorial Integrasi</h6>
+<ul>
+<li><strong>Slack:</strong> <a href="https://api.slack.com/messaging/webhooks" target="_blank">Panduan Incoming Webhooks</a></li>
+<li><strong>Discord:</strong> <a href="https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks" target="_blank">Pengenalan Webhooks</a></li>
+<li><strong>Telegram:</strong> <a href="https://core.telegram.org/bots/webhooks" target="_blank">Bot Webhooks</a> (gunakan dengan <a href="https://core.telegram.org/bots/api#sendmessage" target="_blank">sendMessage API</a>)</li>
+<li><strong>n8n:</strong> <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/" target="_blank">Webhook Node</a></li>
+<li><strong>Zapier:</strong> <a href="https://zapier.com/apps/webhook/integrations" target="_blank">Webhooks by Zapier</a></li>
+<li><strong>Make (Integromat):</strong> <a href="https://www.make.com/en/help/tools/webhooks" target="_blank">Modul Webhooks</a></li>
+</ul>
+<h6>Contoh Penggunaan</h6>
+<ul>
+<li>Kirim notifikasi ke Slack, Discord, atau Telegram</li>
+<li>Buat tiket di sistem helpdesk (Zendesk, Freshdesk)</li>
+<li>Log percakapan ke CRM eksternal</li>
+<li>Picu respons otomatis via n8n atau Zapier</li>
+</ul>',
     ],
     'offline' => 'Offline',
     'days' => [

@@ -597,23 +597,45 @@
         height: 56px;
     }
 
-    // Bottom positions on mobile
+    // Bottom positions on mobile - respect offset settings
     .fob-position-bottom_right .fob-chat-button,
-    .fob-position-bottom_left .fob-chat-button,
-    .fob-position-right .fob-chat-button,
-    .fob-position-left .fob-chat-button {
-        right: 16px;
-        bottom: 16px;
+    .fob-position-right .fob-chat-button {
+        right: var(--fob-offset-x);
+        bottom: var(--fob-offset-y);
         left: auto;
         top: auto;
     }
 
-    // Center positions on mobile - move to bottom
-    .fob-position-center_right .fob-chat-button,
-    .fob-position-center_left .fob-chat-button {
-        right: 16px;
-        bottom: 16px;
+    .fob-position-bottom_left .fob-chat-button,
+    .fob-position-left .fob-chat-button {
+        left: var(--fob-offset-x);
+        bottom: var(--fob-offset-y);
+        right: auto;
+        top: auto;
+    }
+
+    // Center positions on mobile - move to bottom, respect offset settings
+    .fob-position-center_right .fob-chat-button {
+        right: var(--fob-offset-x);
+        bottom: var(--fob-offset-y);
         left: auto;
+        top: auto;
+        transform: none;
+
+        &:hover,
+        &:active {
+            transform: scale(1.08);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+
+    .fob-position-center_left .fob-chat-button {
+        left: var(--fob-offset-x);
+        bottom: var(--fob-offset-y);
+        right: auto;
         top: auto;
         transform: none;
 

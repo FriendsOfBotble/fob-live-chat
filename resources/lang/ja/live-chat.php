@@ -169,6 +169,38 @@ John',
         'status_code' => 'ステータスコード',
         'please_enter_url' => '最初にWebhook URLを入力してください',
         'error_occurred' => 'Webhookのテスト中にエラーが発生しました',
+        'usage_instructions_title' => 'Webhookの使い方',
+        'usage_instructions' => '<p><strong>Webhook</strong>を使用すると、ライブチャットでイベントが発生したときにリアルタイム通知を受け取ることができます。イベントがトリガーされると、設定したURLにJSONペイロードを含むHTTP POSTリクエストが送信されます。</p>
+<h6>HTTPヘッダー</h6>
+<ul>
+<li><code>Content-Type: application/json</code></li>
+<li><code>X-Webhook-Event</code> - イベントタイプ（例：<code>message.received</code>、<code>conversation.started</code>）</li>
+<li><code>X-Webhook-Timestamp</code> - Webhook送信時のISO 8601タイムスタンプ</li>
+<li><code>X-Webhook-Test: true</code> - テストWebhookの場合のみ存在</li>
+</ul>
+<h6>エンドポイント要件</h6>
+<ul>
+<li>HTTP POSTリクエストを受け入れる必要があります</li>
+<li>10秒以内に応答する必要があります（タイムアウト制限）</li>
+<li>成功時はHTTP 2xxステータスコードを返す必要があります</li>
+<li>公開アクセス可能である必要があります（HTTPS推奨）</li>
+</ul>
+<h6>連携チュートリアル</h6>
+<ul>
+<li><strong>Slack:</strong> <a href="https://api.slack.com/messaging/webhooks" target="_blank">Incoming Webhooksガイド</a></li>
+<li><strong>Discord:</strong> <a href="https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks" target="_blank">Webhooks入門</a></li>
+<li><strong>Telegram:</strong> <a href="https://core.telegram.org/bots/webhooks" target="_blank">Bot Webhooks</a>（<a href="https://core.telegram.org/bots/api#sendmessage" target="_blank">sendMessage API</a>と併用）</li>
+<li><strong>n8n:</strong> <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/" target="_blank">Webhook Node</a></li>
+<li><strong>Zapier:</strong> <a href="https://zapier.com/apps/webhook/integrations" target="_blank">Webhooks by Zapier</a></li>
+<li><strong>Make (Integromat):</strong> <a href="https://www.make.com/en/help/tools/webhooks" target="_blank">Webhooksモジュール</a></li>
+</ul>
+<h6>使用例</h6>
+<ul>
+<li>Slack、Discord、Telegramに通知を送信</li>
+<li>ヘルプデスクシステム（Zendesk、Freshdesk）でチケットを作成</li>
+<li>外部CRMに会話を記録</li>
+<li>n8nやZapierで自動応答をトリガー</li>
+</ul>',
     ],
     'offline' => 'Offline',
     'days' => [

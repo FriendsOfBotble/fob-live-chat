@@ -169,6 +169,38 @@ John',
         'status_code' => 'Код статуса',
         'please_enter_url' => 'Сначала введите URL webhook',
         'error_occurred' => 'Произошла ошибка при тестировании webhook',
+        'usage_instructions_title' => 'Как использовать Webhooks',
+        'usage_instructions' => '<p><strong>Webhooks</strong> позволяют получать уведомления в реальном времени о событиях в чате. При срабатывании события на указанный URL отправляется HTTP POST запрос с JSON данными.</p>
+<h6>HTTP заголовки</h6>
+<ul>
+<li><code>Content-Type: application/json</code></li>
+<li><code>X-Webhook-Event</code> - Тип события (напр. <code>message.received</code>, <code>conversation.started</code>)</li>
+<li><code>X-Webhook-Timestamp</code> - Временная метка ISO 8601 при отправке webhook</li>
+<li><code>X-Webhook-Test: true</code> - Присутствует только для тестовых webhooks</li>
+</ul>
+<h6>Требования к endpoint</h6>
+<ul>
+<li>Должен принимать HTTP POST запросы</li>
+<li>Должен отвечать в течение 10 секунд (лимит таймаута)</li>
+<li>Должен возвращать HTTP код 2xx при успехе</li>
+<li>Должен быть публично доступен (рекомендуется HTTPS)</li>
+</ul>
+<h6>Руководства по интеграции</h6>
+<ul>
+<li><strong>Slack:</strong> <a href="https://api.slack.com/messaging/webhooks" target="_blank">Руководство по Incoming Webhooks</a></li>
+<li><strong>Discord:</strong> <a href="https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks" target="_blank">Введение в Webhooks</a></li>
+<li><strong>Telegram:</strong> <a href="https://core.telegram.org/bots/webhooks" target="_blank">Bot Webhooks</a> (использовать с <a href="https://core.telegram.org/bots/api#sendmessage" target="_blank">sendMessage API</a>)</li>
+<li><strong>n8n:</strong> <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/" target="_blank">Webhook Node</a></li>
+<li><strong>Zapier:</strong> <a href="https://zapier.com/apps/webhook/integrations" target="_blank">Webhooks by Zapier</a></li>
+<li><strong>Make (Integromat):</strong> <a href="https://www.make.com/en/help/tools/webhooks" target="_blank">Модуль Webhooks</a></li>
+</ul>
+<h6>Примеры использования</h6>
+<ul>
+<li>Отправка уведомлений в Slack, Discord или Telegram</li>
+<li>Создание тикетов в системах поддержки (Zendesk, Freshdesk)</li>
+<li>Логирование разговоров во внешнюю CRM</li>
+<li>Запуск автоматических ответов через n8n или Zapier</li>
+</ul>',
     ],
     'offline' => 'Offline',
     'days' => [

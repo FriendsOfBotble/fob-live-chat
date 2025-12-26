@@ -169,6 +169,38 @@ John',
         'status_code' => 'รหัสสถานะ',
         'please_enter_url' => 'กรุณาใส่ URL webhook ก่อน',
         'error_occurred' => 'เกิดข้อผิดพลาดขณะทดสอบ webhook',
+        'usage_instructions_title' => 'วิธีใช้ Webhook',
+        'usage_instructions' => '<p><strong>Webhook</strong> ช่วยให้คุณรับการแจ้งเตือนแบบเรียลไทม์เมื่อเกิดเหตุการณ์ใน Live Chat เมื่อเหตุการณ์ถูกทริกเกอร์ คำขอ HTTP POST จะถูกส่งไปยัง URL ที่กำหนดค่าพร้อมข้อมูล JSON</p>
+<h6>HTTP Headers</h6>
+<ul>
+<li><code>Content-Type: application/json</code></li>
+<li><code>X-Webhook-Event</code> - ประเภทเหตุการณ์ (เช่น <code>message.received</code>, <code>conversation.started</code>)</li>
+<li><code>X-Webhook-Timestamp</code> - เวลา ISO 8601 เมื่อส่ง webhook</li>
+<li><code>X-Webhook-Test: true</code> - มีเฉพาะสำหรับ webhook ทดสอบ</li>
+</ul>
+<h6>ข้อกำหนด Endpoint</h6>
+<ul>
+<li>ต้องรับคำขอ HTTP POST</li>
+<li>ต้องตอบกลับภายใน 10 วินาที (ขีดจำกัดหมดเวลา)</li>
+<li>ควรส่งคืนรหัสสถานะ HTTP 2xx เมื่อสำเร็จ</li>
+<li>ต้องเข้าถึงได้แบบสาธารณะ (แนะนำ HTTPS)</li>
+</ul>
+<h6>บทเรียนการรวมระบบ</h6>
+<ul>
+<li><strong>Slack:</strong> <a href="https://api.slack.com/messaging/webhooks" target="_blank">คู่มือ Incoming Webhooks</a></li>
+<li><strong>Discord:</strong> <a href="https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks" target="_blank">แนะนำ Webhooks</a></li>
+<li><strong>Telegram:</strong> <a href="https://core.telegram.org/bots/webhooks" target="_blank">Bot Webhooks</a> (ใช้กับ <a href="https://core.telegram.org/bots/api#sendmessage" target="_blank">sendMessage API</a>)</li>
+<li><strong>n8n:</strong> <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/" target="_blank">Webhook Node</a></li>
+<li><strong>Zapier:</strong> <a href="https://zapier.com/apps/webhook/integrations" target="_blank">Webhooks by Zapier</a></li>
+<li><strong>Make (Integromat):</strong> <a href="https://www.make.com/en/help/tools/webhooks" target="_blank">Webhooks Module</a></li>
+</ul>
+<h6>ตัวอย่างการใช้งาน</h6>
+<ul>
+<li>ส่งการแจ้งเตือนไปยัง Slack, Discord หรือ Telegram</li>
+<li>สร้างตั๋วในระบบ helpdesk (Zendesk, Freshdesk)</li>
+<li>บันทึกการสนทนาไปยัง CRM ภายนอก</li>
+<li>ทริกเกอร์การตอบกลับอัตโนมัติผ่าน n8n หรือ Zapier</li>
+</ul>',
     ],
     'offline' => 'Offline',
     'days' => [

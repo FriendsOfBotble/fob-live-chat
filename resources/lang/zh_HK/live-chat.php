@@ -169,6 +169,38 @@ John',
         'status_code' => '狀態碼',
         'please_enter_url' => '請先輸入 Webhook URL',
         'error_occurred' => '測試 Webhook 時發生錯誤',
+        'usage_instructions_title' => '如何使用 Webhook',
+        'usage_instructions' => '<p><strong>Webhook</strong> 允許您在即時聊天中發生事件時接收實時通知。當觸發事件時，將向您配置的 URL 發送包含 JSON 數據的 HTTP POST 請求。</p>
+<h6>HTTP 標頭</h6>
+<ul>
+<li><code>Content-Type: application/json</code></li>
+<li><code>X-Webhook-Event</code> - 事件類型（如 <code>message.received</code>、<code>conversation.started</code>）</li>
+<li><code>X-Webhook-Timestamp</code> - Webhook 發送時的 ISO 8601 時間戳</li>
+<li><code>X-Webhook-Test: true</code> - 僅在測試 Webhook 時存在</li>
+</ul>
+<h6>端點要求</h6>
+<ul>
+<li>必須接受 HTTP POST 請求</li>
+<li>必須在 10 秒內響應（超時限制）</li>
+<li>成功時應返回 HTTP 2xx 狀態碼</li>
+<li>必須可公開訪問（建議使用 HTTPS）</li>
+</ul>
+<h6>整合教學</h6>
+<ul>
+<li><strong>Slack:</strong> <a href="https://api.slack.com/messaging/webhooks" target="_blank">傳入 Webhook 指南</a></li>
+<li><strong>Discord:</strong> <a href="https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks" target="_blank">Webhook 入門</a></li>
+<li><strong>Telegram:</strong> <a href="https://core.telegram.org/bots/webhooks" target="_blank">Bot Webhooks</a>（配合 <a href="https://core.telegram.org/bots/api#sendmessage" target="_blank">sendMessage API</a> 使用）</li>
+<li><strong>n8n:</strong> <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/" target="_blank">Webhook Node</a></li>
+<li><strong>Zapier:</strong> <a href="https://zapier.com/apps/webhook/integrations" target="_blank">Webhooks by Zapier</a></li>
+<li><strong>Make (Integromat):</strong> <a href="https://www.make.com/en/help/tools/webhooks" target="_blank">Webhooks 模組</a></li>
+</ul>
+<h6>使用場景</h6>
+<ul>
+<li>向 Slack、Discord 或 Telegram 發送通知</li>
+<li>在服務台系統（Zendesk、Freshdesk）中建立工單</li>
+<li>將對話記錄到外部 CRM</li>
+<li>通過 n8n 或 Zapier 觸發自動回覆</li>
+</ul>',
     ],
     'offline' => 'Offline',
     'days' => [

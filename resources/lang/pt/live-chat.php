@@ -169,6 +169,38 @@ John',
         'status_code' => 'Código de status',
         'please_enter_url' => 'Por favor, insira primeiro uma URL de webhook',
         'error_occurred' => 'Ocorreu um erro ao testar o webhook',
+        'usage_instructions_title' => 'Como usar Webhooks',
+        'usage_instructions' => '<p><strong>Webhooks</strong> permitem receber notificações em tempo real quando eventos ocorrem no chat ao vivo. Quando um evento é acionado, uma requisição HTTP POST é enviada para sua URL configurada com dados JSON.</p>
+<h6>Cabeçalhos HTTP</h6>
+<ul>
+<li><code>Content-Type: application/json</code></li>
+<li><code>X-Webhook-Event</code> - Tipo de evento (ex. <code>message.received</code>, <code>conversation.started</code>)</li>
+<li><code>X-Webhook-Timestamp</code> - Timestamp ISO 8601 quando o webhook foi enviado</li>
+<li><code>X-Webhook-Test: true</code> - Presente apenas para webhooks de teste</li>
+</ul>
+<h6>Requisitos do endpoint</h6>
+<ul>
+<li>Deve aceitar requisições HTTP POST</li>
+<li>Deve responder em 10 segundos (limite de timeout)</li>
+<li>Deve retornar código de status HTTP 2xx para sucesso</li>
+<li>Deve ser acessível publicamente (HTTPS recomendado)</li>
+</ul>
+<h6>Tutoriais de integração</h6>
+<ul>
+<li><strong>Slack:</strong> <a href="https://api.slack.com/messaging/webhooks" target="_blank">Guia de Webhooks de entrada</a></li>
+<li><strong>Discord:</strong> <a href="https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks" target="_blank">Introdução aos Webhooks</a></li>
+<li><strong>Telegram:</strong> <a href="https://core.telegram.org/bots/webhooks" target="_blank">Bot Webhooks</a> (usar com <a href="https://core.telegram.org/bots/api#sendmessage" target="_blank">sendMessage API</a>)</li>
+<li><strong>n8n:</strong> <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/" target="_blank">Webhook Node</a></li>
+<li><strong>Zapier:</strong> <a href="https://zapier.com/apps/webhook/integrations" target="_blank">Webhooks by Zapier</a></li>
+<li><strong>Make (Integromat):</strong> <a href="https://www.make.com/en/help/tools/webhooks" target="_blank">Módulo Webhooks</a></li>
+</ul>
+<h6>Casos de uso</h6>
+<ul>
+<li>Enviar notificações para Slack, Discord ou Telegram</li>
+<li>Criar tickets em sistemas de helpdesk (Zendesk, Freshdesk)</li>
+<li>Registrar conversas em CRM externo</li>
+<li>Acionar respostas automatizadas via n8n ou Zapier</li>
+</ul>',
     ],
     'offline' => 'Offline',
     'days' => [

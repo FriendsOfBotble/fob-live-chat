@@ -169,6 +169,38 @@ John',
         'status_code' => 'Mã trạng thái',
         'please_enter_url' => 'Vui lòng nhập URL webhook trước',
         'error_occurred' => 'Đã xảy ra lỗi khi kiểm tra webhook',
+        'usage_instructions_title' => 'Cách sử dụng Webhook',
+        'usage_instructions' => '<p><strong>Webhook</strong> cho phép bạn nhận thông báo thời gian thực khi có sự kiện xảy ra trong Live Chat. Khi một sự kiện được kích hoạt, một yêu cầu HTTP POST sẽ được gửi đến URL đã cấu hình với dữ liệu JSON.</p>
+<h6>HTTP Headers</h6>
+<ul>
+<li><code>Content-Type: application/json</code></li>
+<li><code>X-Webhook-Event</code> - Loại sự kiện (vd: <code>message.received</code>, <code>conversation.started</code>)</li>
+<li><code>X-Webhook-Timestamp</code> - Dấu thời gian ISO 8601 khi webhook được gửi</li>
+<li><code>X-Webhook-Test: true</code> - Chỉ có khi test webhook</li>
+</ul>
+<h6>Yêu cầu Endpoint</h6>
+<ul>
+<li>Phải chấp nhận yêu cầu HTTP POST</li>
+<li>Phải phản hồi trong vòng 10 giây (giới hạn timeout)</li>
+<li>Phải trả về mã trạng thái HTTP 2xx khi thành công</li>
+<li>Phải có thể truy cập công khai (khuyến nghị HTTPS)</li>
+</ul>
+<h6>Hướng dẫn tích hợp</h6>
+<ul>
+<li><strong>Slack:</strong> <a href="https://api.slack.com/messaging/webhooks" target="_blank">Hướng dẫn Incoming Webhooks</a></li>
+<li><strong>Discord:</strong> <a href="https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks" target="_blank">Giới thiệu về Webhooks</a></li>
+<li><strong>Telegram:</strong> <a href="https://core.telegram.org/bots/webhooks" target="_blank">Bot Webhooks</a> (sử dụng với <a href="https://core.telegram.org/bots/api#sendmessage" target="_blank">sendMessage API</a>)</li>
+<li><strong>n8n:</strong> <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/" target="_blank">Webhook Node</a></li>
+<li><strong>Zapier:</strong> <a href="https://zapier.com/apps/webhook/integrations" target="_blank">Webhooks by Zapier</a></li>
+<li><strong>Make (Integromat):</strong> <a href="https://www.make.com/en/help/tools/webhooks" target="_blank">Webhooks Module</a></li>
+</ul>
+<h6>Ví dụ sử dụng</h6>
+<ul>
+<li>Gửi thông báo đến Slack, Discord hoặc Telegram</li>
+<li>Tạo ticket trong hệ thống hỗ trợ (Zendesk, Freshdesk)</li>
+<li>Ghi log cuộc hội thoại vào CRM bên ngoài</li>
+<li>Kích hoạt phản hồi tự động qua n8n hoặc Zapier</li>
+</ul>',
     ],
     'offline' => 'Offline',
     'days' => [

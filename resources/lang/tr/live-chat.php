@@ -169,6 +169,38 @@ John',
         'status_code' => 'Durum Kodu',
         'please_enter_url' => 'Lütfen önce bir webhook URL\'si girin',
         'error_occurred' => 'Webhook test edilirken bir hata oluştu',
+        'usage_instructions_title' => 'Webhook Nasıl Kullanılır',
+        'usage_instructions' => '<p><strong>Webhook\'lar</strong> canlı sohbette olaylar gerçekleştiğinde gerçek zamanlı bildirimler almanızı sağlar. Bir olay tetiklendiğinde, yapılandırılmış URL\'nize JSON verileri içeren bir HTTP POST isteği gönderilir.</p>
+<h6>HTTP Başlıkları</h6>
+<ul>
+<li><code>Content-Type: application/json</code></li>
+<li><code>X-Webhook-Event</code> - Olay türü (örn. <code>message.received</code>, <code>conversation.started</code>)</li>
+<li><code>X-Webhook-Timestamp</code> - Webhook gönderildiğinde ISO 8601 zaman damgası</li>
+<li><code>X-Webhook-Test: true</code> - Yalnızca test webhook\'larında bulunur</li>
+</ul>
+<h6>Endpoint Gereksinimleri</h6>
+<ul>
+<li>HTTP POST isteklerini kabul etmelidir</li>
+<li>10 saniye içinde yanıt vermelidir (zaman aşımı sınırı)</li>
+<li>Başarı için HTTP 2xx durum kodu döndürmelidir</li>
+<li>Herkese açık erişilebilir olmalıdır (HTTPS önerilir)</li>
+</ul>
+<h6>Entegrasyon Eğitimleri</h6>
+<ul>
+<li><strong>Slack:</strong> <a href="https://api.slack.com/messaging/webhooks" target="_blank">Incoming Webhooks Kılavuzu</a></li>
+<li><strong>Discord:</strong> <a href="https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks" target="_blank">Webhook\'lara Giriş</a></li>
+<li><strong>Telegram:</strong> <a href="https://core.telegram.org/bots/webhooks" target="_blank">Bot Webhooks</a> (<a href="https://core.telegram.org/bots/api#sendmessage" target="_blank">sendMessage API</a> ile kullanın)</li>
+<li><strong>n8n:</strong> <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/" target="_blank">Webhook Node</a></li>
+<li><strong>Zapier:</strong> <a href="https://zapier.com/apps/webhook/integrations" target="_blank">Webhooks by Zapier</a></li>
+<li><strong>Make (Integromat):</strong> <a href="https://www.make.com/en/help/tools/webhooks" target="_blank">Webhooks Modülü</a></li>
+</ul>
+<h6>Kullanım Örnekleri</h6>
+<ul>
+<li>Slack, Discord veya Telegram\'a bildirim gönderme</li>
+<li>Yardım masası sistemlerinde (Zendesk, Freshdesk) bilet oluşturma</li>
+<li>Konuşmaları harici CRM\'e kaydetme</li>
+<li>n8n veya Zapier ile otomatik yanıtları tetikleme</li>
+</ul>',
     ],
     'offline' => 'Offline',
     'days' => [

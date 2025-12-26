@@ -169,6 +169,38 @@ John',
         'status_code' => 'رمز الحالة',
         'please_enter_url' => 'الرجاء إدخال رابط webhook أولاً',
         'error_occurred' => 'حدث خطأ أثناء اختبار webhook',
+        'usage_instructions_title' => 'كيفية استخدام Webhooks',
+        'usage_instructions' => '<p><strong>Webhooks</strong> تتيح لك تلقي إشعارات في الوقت الفعلي عند حدوث أحداث في الدردشة المباشرة. عند تشغيل حدث، يتم إرسال طلب HTTP POST إلى عنوان URL المحدد مع بيانات JSON.</p>
+<h6>رؤوس HTTP</h6>
+<ul>
+<li><code>Content-Type: application/json</code></li>
+<li><code>X-Webhook-Event</code> - نوع الحدث (مثل <code>message.received</code>، <code>conversation.started</code>)</li>
+<li><code>X-Webhook-Timestamp</code> - الطابع الزمني ISO 8601 عند إرسال webhook</li>
+<li><code>X-Webhook-Test: true</code> - موجود فقط لاختبار webhooks</li>
+</ul>
+<h6>متطلبات نقطة النهاية</h6>
+<ul>
+<li>يجب قبول طلبات HTTP POST</li>
+<li>يجب الاستجابة خلال 10 ثوانٍ (حد المهلة)</li>
+<li>يجب إرجاع رمز حالة HTTP 2xx للنجاح</li>
+<li>يجب أن تكون متاحة للجمهور (يُوصى بـ HTTPS)</li>
+</ul>
+<h6>دروس التكامل</h6>
+<ul>
+<li><strong>Slack:</strong> <a href="https://api.slack.com/messaging/webhooks" target="_blank">دليل Webhooks الواردة</a></li>
+<li><strong>Discord:</strong> <a href="https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks" target="_blank">مقدمة إلى Webhooks</a></li>
+<li><strong>Telegram:</strong> <a href="https://core.telegram.org/bots/webhooks" target="_blank">Bot Webhooks</a> (استخدم مع <a href="https://core.telegram.org/bots/api#sendmessage" target="_blank">sendMessage API</a>)</li>
+<li><strong>n8n:</strong> <a href="https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.webhook/" target="_blank">Webhook Node</a></li>
+<li><strong>Zapier:</strong> <a href="https://zapier.com/apps/webhook/integrations" target="_blank">Webhooks by Zapier</a></li>
+<li><strong>Make (Integromat):</strong> <a href="https://www.make.com/en/help/tools/webhooks" target="_blank">Webhooks Module</a></li>
+</ul>
+<h6>أمثلة على حالات الاستخدام</h6>
+<ul>
+<li>إرسال إشعارات إلى Slack أو Discord أو Telegram</li>
+<li>إنشاء تذاكر في أنظمة الدعم (Zendesk، Freshdesk)</li>
+<li>تسجيل المحادثات في CRM خارجي</li>
+<li>تشغيل ردود تلقائية عبر n8n أو Zapier</li>
+</ul>',
     ],
     'offline' => 'Offline',
     'days' => [

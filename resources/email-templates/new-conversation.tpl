@@ -9,7 +9,7 @@
                         <tbody>
                             <tr>
                                 <td valign="middle" align="center">
-                                    <img src="{{ 'message-circle' | icon_url }}" class="bb-va-middle" width="40" height="40" alt="Icon">
+                                    <img src="{{ 'mail' | icon_url }}" class="bb-va-middle" width="40" height="40" alt="Icon">
                                 </td>
                             </tr>
                         </tbody>

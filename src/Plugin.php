@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Schema;
 
 class Plugin extends PluginOperationAbstract
 {
+    public const VERSION = '1.0.5';
+
     public static function remove(): void
     {
         Schema::dropIfExists('fob_live_chat_messages');

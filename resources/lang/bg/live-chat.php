@@ -32,6 +32,7 @@ return [
     'total_messages' => 'Общо съобщения',
     'just_now' => 'Току-що',
     'test_sound' => 'Кликнете за тест на звука',
+    'back_to_list' => 'Обратно към разговорите',
     'no_messages_yet' => 'Все още няма съобщения',
     'start_conversation_hint' => 'Изпратете съобщение, за да започнете разговора',
     'notifications_enabled' => 'Известията в браузъра са активирани!',

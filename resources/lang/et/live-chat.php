@@ -32,6 +32,7 @@ return [
     'total_messages' => 'Sõnumite koguarv',
     'just_now' => 'Just praegu',
     'test_sound' => 'Kliki heli testimiseks',
+    'back_to_list' => 'Tagasi vestluste juurde',
     'no_messages_yet' => 'Sõnumeid veel pole',
     'start_conversation_hint' => 'Saada sõnum vestluse alustamiseks',
     'notifications_enabled' => 'Brauseri teavitused lubatud!',

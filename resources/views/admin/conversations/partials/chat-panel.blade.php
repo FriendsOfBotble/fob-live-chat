@@ -1,6 +1,9 @@
 {{-- Chat Header --}}
 <div class="fob-chat-header">
     <div class="fob-chat-header-info">
+        <button type="button" class="btn btn-ghost-secondary btn-sm fob-mobile-back-btn" id="mobile-back-btn" title="{{ trans('plugins/fob-live-chat::live-chat.back_to_list') }}">
+            <x-core::icon name="ti ti-arrow-left" />
+        </button>
         <div class="fob-conversation-avatar {{ $conversation->status->getValue() === 'open' ? 'is-online' : '' }}">
             <span class="fob-avatar-text">{{ strtoupper(substr($conversation->visitor_name, 0, 2)) }}</span>
         </div>

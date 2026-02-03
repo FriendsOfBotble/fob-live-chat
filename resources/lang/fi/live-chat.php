@@ -32,6 +32,7 @@ return [
     'total_messages' => 'Viestien määrä',
     'just_now' => 'Juuri nyt',
     'test_sound' => 'Napsauta testataksesi ääntä',
+    'back_to_list' => 'Takaisin keskusteluihin',
     'no_messages_yet' => 'Ei viestejä vielä',
     'start_conversation_hint' => 'Lähetä viesti aloittaaksesi keskustelun',
     'notifications_enabled' => 'Selaimen ilmoitukset käytössä!',

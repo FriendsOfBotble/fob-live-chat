@@ -24,7 +24,7 @@
 @endphp
 
 {{-- Embed CSS directly --}}
-<link rel="stylesheet" href="{{ asset('vendor/core/plugins/fob-live-chat/css/live-chat.css') }}?v=1.0.1">
+<link rel="stylesheet" href="{{ asset('vendor/core/plugins/fob-live-chat/css/live-chat.css') }}?v={{ FriendsOfBotble\LiveChat\Plugin::VERSION }}">
 
 <div id="fob-live-chat" class="fob-live-chat fob-position-{{ $config['position'] }}{{ $config['hiddenOnMobile'] ? ' fob-hidden-on-mobile' : '' }}" data-config='@json($config)' style="--fob-primary: {{ $config['primaryColor'] }}; --fob-primary-hover: {{ $config['primaryHoverColor'] }}; --fob-status-color: {{ $config['statusColor'] }}; --fob-offset-x: {{ $config['offsetX'] }}px; --fob-offset-y: {{ $config['offsetY'] }}px;">
 
@@ -129,4 +129,4 @@
 </div>
 
 {{-- Embed JS directly --}}
-<script src="{{ asset('vendor/core/plugins/fob-live-chat/js/live-chat.js') }}?v=1.0.1"></script>
+<script src="{{ asset('vendor/core/plugins/fob-live-chat/js/live-chat.js') }}?v={{ FriendsOfBotble\LiveChat\Plugin::VERSION }}"></script>

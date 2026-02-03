@@ -32,6 +32,7 @@ return [
     'total_messages' => 'Всего сообщений',
     'just_now' => 'Только что',
     'test_sound' => 'Нажмите для проверки звука',
+    'back_to_list' => 'Назад к списку',
     'no_messages_yet' => 'Сообщений пока нет',
     'start_conversation_hint' => 'Отправьте сообщение, чтобы начать разговор',
     'notifications_enabled' => 'Уведомления браузера включены!',

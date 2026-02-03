@@ -32,6 +32,7 @@ return [
     'total_messages' => 'Total mesaje',
     'just_now' => 'Chiar acum',
     'test_sound' => 'Click pentru a testa sunetul',
+    'back_to_list' => 'Înapoi la conversații',
     'no_messages_yet' => 'Niciun mesaj încă',
     'start_conversation_hint' => 'Trimiteți un mesaj pentru a începe conversația',
     'notifications_enabled' => 'Notificările browserului activate!',

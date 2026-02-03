@@ -32,6 +32,7 @@ return [
     'total_messages' => 'Celkový počet správ',
     'just_now' => 'Práve teraz',
     'test_sound' => 'Kliknite pre test zvuku',
+    'back_to_list' => 'Späť na konverzácie',
     'no_messages_yet' => 'Zatiaľ žiadne správy',
     'start_conversation_hint' => 'Pošlite správu pre začatie konverzácie',
     'notifications_enabled' => 'Upozornenia prehliadača povolené!',

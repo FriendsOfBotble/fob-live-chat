@@ -32,6 +32,7 @@ return [
     'total_messages' => 'Totalt antal meddelanden',
     'just_now' => 'Precis nu',
     'test_sound' => 'Klicka för att testa ljud',
+    'back_to_list' => 'Tillbaka till konversationer',
     'no_messages_yet' => 'Inga meddelanden ännu',
     'start_conversation_hint' => 'Skicka ett meddelande för att starta konversationen',
     'notifications_enabled' => 'Webbläsaraviseringar aktiverade!',

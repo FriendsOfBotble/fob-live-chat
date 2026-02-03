@@ -37,6 +37,7 @@ return [
     'enable_notifications' => 'Activer les notifications du navigateur',
     'notifications_enabled' => 'Notifications du navigateur activées !',
     'test_sound' => 'Cliquez pour tester le son',
+    'back_to_list' => 'Retour aux conversations',
     'no_messages_yet' => 'Pas encore de messages',
     'start_conversation_hint' => 'Envoyez un message pour démarrer la conversation',
     'open_chat' => 'Ouvrir le chat',

@@ -32,6 +32,7 @@ return [
     'total_messages' => 'মোট বার্তা',
     'just_now' => 'এইমাত্র',
     'test_sound' => 'সাউন্ড পরীক্ষা করতে ক্লিক করুন',
+    'back_to_list' => 'কথোপকথনে ফিরে যান',
     'no_messages_yet' => 'এখনো কোনো বার্তা নেই',
     'start_conversation_hint' => 'কথোপকথন শুরু করতে একটি বার্তা পাঠান',
     'notifications_enabled' => 'ব্রাউজার বিজ্ঞপ্তি সক্রিয় হয়েছে!',

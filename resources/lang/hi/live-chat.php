@@ -32,6 +32,7 @@ return [
     'total_messages' => 'कुल संदेश',
     'just_now' => 'अभी',
     'test_sound' => 'ध्वनि परीक्षण के लिए क्लिक करें',
+    'back_to_list' => 'बातचीत पर वापस जाएं',
     'no_messages_yet' => 'अभी कोई संदेश नहीं',
     'start_conversation_hint' => 'बातचीत शुरू करने के लिए संदेश भेजें',
     'notifications_enabled' => 'ब्राउज़र सूचनाएं सक्षम!',

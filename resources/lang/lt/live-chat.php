@@ -32,6 +32,7 @@ return [
     'total_messages' => 'Iš viso žinučių',
     'just_now' => 'Ką tik',
     'test_sound' => 'Spustelėkite, kad išbandytumėte garsą',
+    'back_to_list' => 'Grįžti į pokalbius',
     'no_messages_yet' => 'Kol kas nėra žinučių',
     'start_conversation_hint' => 'Siųskite žinutę pokalbio pradžiai',
     'notifications_enabled' => 'Naršyklės pranešimai įjungti!',

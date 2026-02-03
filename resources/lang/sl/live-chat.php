@@ -32,6 +32,7 @@ return [
     'total_messages' => 'Skupno sporočil',
     'just_now' => 'Pravkar',
     'test_sound' => 'Kliknite za preizkus zvoka',
+    'back_to_list' => 'Nazaj na pogovore',
     'no_messages_yet' => 'Še ni sporočil',
     'start_conversation_hint' => 'Pošljite sporočilo za začetek pogovora',
     'notifications_enabled' => 'Obvestila brskalnika omogočena!',

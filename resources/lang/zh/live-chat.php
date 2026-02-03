@@ -32,6 +32,7 @@ return [
     'total_messages' => '消息总数',
     'just_now' => '刚刚',
     'test_sound' => '点击测试声音',
+    'back_to_list' => '返回列表',
     'no_messages_yet' => '暂无消息',
     'start_conversation_hint' => '发送消息以开始对话',
     'notifications_enabled' => '浏览器通知已启用！',

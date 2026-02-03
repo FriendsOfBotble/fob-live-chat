@@ -888,25 +888,60 @@
     }
 }
 
+// Mobile Back Button (hidden on desktop)
+.fob-mobile-back-btn {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .fob-messenger {
         flex-direction: column;
         height: auto;
         min-height: calc(100vh - 120px);
         border-radius: 0;
+        position: relative;
     }
 
     .fob-messenger-sidebar {
         width: 100%;
         max-width: none;
-        max-height: 45vh;
+        height: 100%;
+        max-height: none;
         border-right: none;
-        border-bottom: 1px solid var(--bb-border-color);
+        border-bottom: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+        transition: transform var(--fob-transition-normal) ease;
     }
 
     .fob-messenger-main {
-        min-height: 55vh;
+        width: 100%;
+        height: 100%;
+        min-height: calc(100vh - 120px);
         flex: none;
+    }
+
+    // When chat is active on mobile, hide sidebar
+    .fob-messenger.fob-mobile-chat-active {
+        .fob-messenger-sidebar {
+            transform: translateX(-100%);
+        }
+    }
+
+    // Show back button on mobile
+    .fob-mobile-back-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        border-radius: 8px;
+        flex-shrink: 0;
     }
 
     .fob-message-row {
@@ -1287,6 +1322,23 @@
     .fob-messenger-sidebar {
         border-right: none;
         border-left: 1px solid var(--bb-border-color);
+    }
+
+    // RTL mobile support
+    @media (max-width: 768px) {
+        .fob-messenger-sidebar {
+            transform: translateX(0);
+        }
+
+        .fob-messenger.fob-mobile-chat-active .fob-messenger-sidebar {
+            transform: translateX(100%);
+        }
+
+        .fob-mobile-back-btn {
+            svg {
+                transform: rotate(180deg);
+            }
+        }
     }
 
     .fob-conversation-item {

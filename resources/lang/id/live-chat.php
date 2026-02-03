@@ -32,6 +32,7 @@ return [
     'total_messages' => 'Total pesan',
     'just_now' => 'Baru saja',
     'test_sound' => 'Klik untuk menguji suara',
+    'back_to_list' => 'Kembali ke percakapan',
     'no_messages_yet' => 'Belum ada pesan',
     'start_conversation_hint' => 'Kirim pesan untuk memulai percakapan',
     'notifications_enabled' => 'Notifikasi browser diaktifkan!',

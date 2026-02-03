@@ -37,6 +37,7 @@ return [
     'enable_notifications' => 'Bật thông báo trình duyệt',
     'notifications_enabled' => 'Đã bật thông báo trình duyệt!',
     'test_sound' => 'Click để test âm thanh',
+    'back_to_list' => 'Quay lại danh sách',
     'no_messages_yet' => 'Chưa có tin nhắn',
     'start_conversation_hint' => 'Gửi tin nhắn để bắt đầu cuộc trò chuyện',
     'open_chat' => 'Mở chat',

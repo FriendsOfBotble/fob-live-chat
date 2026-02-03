@@ -32,6 +32,7 @@ return [
     'total_messages' => 'Łączna liczba wiadomości',
     'just_now' => 'Przed chwilą',
     'test_sound' => 'Kliknij, aby przetestować dźwięk',
+    'back_to_list' => 'Powrót do rozmów',
     'no_messages_yet' => 'Brak wiadomości',
     'start_conversation_hint' => 'Wyślij wiadomość, aby rozpocząć rozmowę',
     'notifications_enabled' => 'Powiadomienia przeglądarki włączone!',
